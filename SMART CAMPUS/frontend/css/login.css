@@ -1,0 +1,236 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: #c9d7ff;
+    font-family: Arial;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    width: 900px;
+    min-height: 520px;
+    background: #fff;
+    border-radius: 18px;
+    display: flex;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* LEFT SIDE */
+.left {
+    width: 45%;
+    background: #eef4ff;
+    border-radius: 18px 0 0 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.illustration {
+    width: 80%;
+}
+
+/* RIGHT SIDE */
+.right {
+    width: 55%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow: hidden;
+}
+
+.header {
+    text-align: center;
+}
+
+.logo {
+    width: 120px;
+    margin-bottom: 10px;
+}
+
+#loginTitle {
+    margin: 5px 0;
+    color: #3b4b91;
+    font-size: 26px;
+}
+
+.form {
+    margin-top: 20px;
+}
+
+.form label {
+    font-size: 14px;
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.form input,
+.form select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 14px;
+    border-radius: 6px;
+    border: 1.5px solid #ddd;
+    font-size: 14px;
+    box-sizing: border-box;
+    font-family: Arial;
+    transition: border-color 0.3s;
+}
+
+.form input:focus,
+.form select:focus {
+    outline: none;
+    border-color: #3b4b91;
+    box-shadow: 0 0 5px rgba(59, 75, 145, 0.2);
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background: #3b4b91;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #2d3a6b;
+}
+
+.bottomTxt {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 13px;
+    color: #666;
+}
+
+/* RESPONSIVE DESIGN */
+@media (max-width: 768px) {
+    body {
+        height: auto;
+        min-height: 100vh;
+        padding: 20px;
+    }
+
+    .container {
+        width: 100%;
+        min-height: auto;
+        flex-direction: column;
+    }
+
+    .left {
+        width: 100%;
+        border-radius: 18px 18px 0 0;
+        padding: 20px 0;
+        min-height: 200px;
+    }
+
+    .right {
+        width: 100%;
+        padding: 30px 20px;
+        border-radius: 0 0 18px 18px;
+        box-sizing: border-box;
+    }
+
+    .illustration {
+        width: 60%;
+    }
+
+    .logo {
+        width: 80px;
+    }
+
+    #loginTitle {
+        font-size: 20px;
+    }
+
+    .form label {
+        font-size: 13px;
+    }
+
+    .form input,
+    .form select {
+        padding: 10px;
+        margin-bottom: 14px;
+        font-size: 14px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    button {
+        padding: 10px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        border-radius: 12px;
+    }
+
+    .left {
+        min-height: 150px;
+        border-radius: 12px 12px 0 0;
+    }
+
+    .right {
+        padding: 20px 15px;
+        border-radius: 0 0 12px 12px;
+        box-sizing: border-box;
+    }
+
+    .illustration {
+        width: 50%;
+    }
+
+    .logo {
+        width: 60px;
+        margin-bottom: 5px;
+    }
+
+    #loginTitle {
+        font-size: 18px;
+        margin: 3px 0;
+    }
+
+    .form {
+        margin-top: 15px;
+    }
+
+    .form label {
+        font-size: 12px;
+        margin-bottom: 3px;
+    }
+
+    .form input,
+    .form select {
+        padding: 10px 8px;
+        margin-bottom: 12px;
+        font-size: 14px;
+        width: 100%;
+        box-sizing: border-box;
+        max-width: 100%;
+    }
+
+    button {
+        padding: 10px;
+        font-size: 13px;
+    }
+
+    .bottomTxt {
+        font-size: 11px;
+        margin-top: 8px;
+    }
+}

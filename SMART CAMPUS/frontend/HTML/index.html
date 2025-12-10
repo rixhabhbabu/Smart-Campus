@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Campus Login</title>
+<link rel="stylesheet" href="../css/login.css">
+</head>
+
+<body>
+
+<div class="container">
+
+    <!-- LEFT SIDE IMAGE -->
+    <div class="left">
+        <img src="../assets/images/illustration.png" class="illustration">
+    </div>
+
+    <!-- RIGHT SIDE LOGIN FORM -->
+    <div class="right">
+        <div class="header">
+            <img src="../assets/images/logo.png" class="logo">
+            <h2 id="loginTitle">Smart Campus Login</h2>
+        </div>
+
+        <div class="form">
+            <label>Select Role</label>
+            <select id="roleSelect">
+                <option value="Student">Student</option>
+                <option value="Teacher">Teacher</option>
+                <option value="CR">Class Representative</option>
+                <option value="HOD">HOD</option>
+                <option value="Admin">Admin</option>
+            </select>
+
+            <label>Email or Mobile Number</label>
+            <input type="text" id="emailOrMobile" placeholder="Enter Email or Mobile Number">
+
+            <label>Password</label>
+            <input type="password" id="password" placeholder="Enter Password" style="width: 100%; padding: 10px; margin-bottom: 8px; border-radius: 6px; border: 1px solid #ccc; box-sizing: border-box;">
+            
+            <div style="display: flex; align-items: center; margin-bottom: 14px; gap: 8px;">
+                <input type="checkbox" id="showPasswordCheckbox" style="cursor: pointer; width: 18px; height: 18px; margin: 0;">
+                <label for="showPasswordCheckbox" style="font-size: 14px; cursor: pointer; margin: 0; font-weight: normal;">Show Password</label>
+            </div>
+            
+            <div style="text-align: right; margin-bottom: 14px;">
+                <a href="#" id="forgotPwdLink" style="font-size: 12px; color: #007bff; text-decoration: none;">Forgot Password?</a>
+            </div>
+
+            <button id="loginBtn">Login</button>
+        </div>
+
+        <p class="bottomTxt">© Smart Campus Management Portal</p>
+    </div>
+</div>
+
+<script src="../js/login.js"></script>
+</body>
+</html>

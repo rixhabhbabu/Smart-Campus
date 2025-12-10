@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="frontend/css/style.css">
+</head>
+
+<body>
+
+<!-- Sidebar -->
+<div class="sidebar">
+    <img src="assets/images/profile.png">
+    <h3>Hey, Rishabh</h3>
+    <p>Roll No: 21CSE120</p>
+
+    <a href="#">Dashboard</a>
+    <a href="#">Attendance</a>
+    <a href="#">Notes</a>
+    <a href="#">Issues</a>
+    <a href="#">Leave Status</a>
+    <a href="#" onclick="logout()">Logout</a>
+</div>
+
+<!-- Topbar -->
+<div class="topbar">
+    <h2>Student Dashboard</h2>
+    <div>
+        <button style="padding:8px 16px;border:none;background:#5236ff;color:white;border-radius:8px;">Dark Mode</button>
+    </div>
+</div>
+
+<!-- Content -->
+<div class="content">
+
+    <h2>Attendance</h2>
+
+    <div class="attendance-cards">
+
+        <div class="card">
+            <h3>Computer Architecture</h3>
+            <p>27 / 30</p>
+            <div class="circle"></div>
+            <p>81% • Last 24 Hours</p>
+        </div>
+
+        <div class="card">
+            <h3>Database Management</h3>
+            <p>24 / 25</p>
+            <div class="circle"></div>
+            <p>96% • Last 24 Hours</p>
+        </div>
+
+        <div class="card">
+            <h3>Network Security</h3>
+            <p>25 / 27</p>
+            <div class="circle"></div>
+            <p>92% • Last 24 Hours</p>
+        </div>
+
+    </div>
+
+    <br><br>
+
+    <!-- Leave & Issue Status -->
+    <div class="attendance-cards">
+
+        <div class="card">
+            <h3>Leave Status</h3>
+            <p>Approved: 1</p>
+            <p>Pending: 0</p>
+        </div>
+
+        <div class="card">
+            <h3>Issue Status</h3>
+            <p>Open: 1</p>
+            <p>Resolved: 3</p>
+        </div>
+
+        <div class="card">
+            <h3>Notes</h3>
+            <p>12 Notes Available</p>
+        </div>
+
+    </div>
+
+    <!-- Announcements -->
+    <div class="ann-box">
+        <h2>Announcements</h2>
+        <p><b>Academic:</b> Mid Term exam notice uploaded.</p>
+        <p><b>Training:</b> Summer internship registration open.</p>
+    </div>
+
+    <!-- Timetable -->
+    <h2 style="margin-top:30px;">Today's Timetable</h2>
+    <div class="table-box">
+        <table>
+            <tr>
+                <th>Time</th>
+                <th>Room No.</th>
+                <th>Subject</th>
+            </tr>
+            <tr>
+                <td>10 AM – 11 AM</td>
+                <td>33-309</td>
+                <td>DBMS130 (Lecture)</td>
+            </tr>
+            <tr>
+                <td>11 AM – 12 PM</td>
+                <td>38-719</td>
+                <td>CS200 (Lecture)</td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+
+<script src="js/script.js"></script>
+
+</body>
+</html>
