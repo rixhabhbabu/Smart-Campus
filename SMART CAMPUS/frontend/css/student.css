@@ -1,5 +1,16 @@
 /* ============================================
    STUDENT DASHBOARD STYLES
+   MINOR PROJECT VERSION
+   ============================================
+   
+   IMPORTANT NOTES:
+   - This is a simplified version for a MINOR PROJECT
+   - Advanced features like Timetable, Subjects & Notes,
+     Activity History, and Notifications are removed
+   - CR (Class Representative) functionality is retained
+     but accessible only to privileged students
+   - Upgrade path: These features will be available in MAJOR PROJECT
+   
    ============================================ */
 
 :root {
@@ -901,5 +912,3 @@ body.dark-mode .cr-request-card:hover {
     background: #363636 !important;
     border-color: #555 !important;
 }
-
-

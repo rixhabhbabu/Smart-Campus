@@ -37,6 +37,20 @@
         body.dark-mode .marks-row {
             border-bottom-color: #444;
         }
+        .performance-grid {
+            display: grid;
+            gap: 1rem;
+        }
+        .performance-card {
+            padding: 1rem;
+            background: #f8f9fa;
+            border-radius: 8px;
+            color: #333;
+        }
+        body.dark-mode .performance-card {
+            background: #2d2d2d;
+            color: #e0e0e0;
+        }
         .grade-badge {
             display: inline-block;
             padding: 0.3rem 0.8rem;
@@ -110,17 +124,17 @@
         <!-- Result Summary -->
         <section class="info-section">
             <h2>📊 Overall Performance</h2>
-            <div style="display: grid; gap: 1rem;">
-                <div style="padding: 1rem; background: #f8f9fa; border-radius: 8px;">
+            <div class="performance-grid">
+                <div class="performance-card">
                     <p><strong>Total Credits Completed:</strong> 140 / 160</p>
                 </div>
-                <div style="padding: 1rem; background: #f8f9fa; border-radius: 8px;">
+                <div class="performance-card">
                     <p><strong>Current Semester Grade:</strong> <span class="grade-badge grade-a">A</span></p>
                 </div>
-                <div style="padding: 1rem; background: #f8f9fa; border-radius: 8px;">
+                <div class="performance-card">
                     <p><strong>Attendance Status:</strong> Good (85%+)</p>
                 </div>
-                <div style="padding: 1rem; background: #f8f9fa; border-radius: 8px;">
+                <div class="performance-card">
                     <p><strong>Academic Standing:</strong> Excellent</p>
                 </div>
             </div>

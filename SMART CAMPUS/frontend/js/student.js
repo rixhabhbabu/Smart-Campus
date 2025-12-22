@@ -2,19 +2,26 @@
 // STUDENT DASHBOARD DUMMY DATA & LOGIC
 // ============================================
 
+// IMPORTANT NOTE: This is a MINOR PROJECT version
+// Advanced features like timetable, subjects, and notifications
+// are reserved for the MAJOR PROJECT
+
 // Dummy Student Object
 const dummyStudent = {
     id: "STU001",
     name: "Akhil Sharma",
     email: "akhil.sharma@college.edu",
     mobile: "9876543210",
-    role: "cr", // Change to "student" to hide CR panel. Values: "student" or "cr"
     semester: 5,
     division: "3A",
     totalSubjects: 7,
     attendance: 85,
     rollNumber: "103054"
 };
+
+// CR Flag - Check from localStorage
+// CR status is set during login based on user credentials
+let isCR = localStorage.getItem("sc_isCR") === "true" ? true : false;
 
 // Dummy Attendance Data
 const dummyAttendance = [
@@ -27,65 +34,8 @@ const dummyAttendance = [
     { subject: "Software Engineering", attended: 27, total: 30, percentage: 90.0 }
 ];
 
-// Dummy Timetable Data
-const dummyTimetable = [
-    { day: "Monday", time: "9:00 AM - 10:30 AM", subject: "Data Structures", teacher: "Dr. Rajesh Kumar" },
-    { day: "Monday", time: "10:45 AM - 12:15 PM", subject: "Database Management", teacher: "Prof. Priya Singh" },
-    { day: "Tuesday", time: "9:00 AM - 10:30 AM", subject: "Web Development", teacher: "Mr. Amit Patel" },
-    { day: "Tuesday", time: "10:45 AM - 12:15 PM", subject: "Python Programming", teacher: "Dr. Neha Gupta" },
-    { day: "Wednesday", time: "9:00 AM - 10:30 AM", subject: "Operating Systems", teacher: "Prof. Arvind Sharma" },
-    { day: "Wednesday", time: "2:00 PM - 3:30 PM", subject: "Discrete Mathematics", teacher: "Dr. Mohan Verma" },
-    { day: "Thursday", time: "9:00 AM - 10:30 AM", subject: "Software Engineering", teacher: "Ms. Anjali Desai" },
-    { day: "Friday", time: "10:45 AM - 12:15 PM", subject: "Lab Session", teacher: "Mr. Vikram Singh" }
-];
-
-// Dummy Subjects & Notes
-const dummySubjects = [
-    { 
-        name: "Data Structures", 
-        credits: 4, 
-        notes: ["Array & Linked Lists", "Trees & Graphs", "Sorting Algorithms"], 
-        materials: "5 files available"
-    },
-    { 
-        name: "Database Management", 
-        credits: 4, 
-        notes: ["Relational Model", "SQL Queries", "Normalization"], 
-        materials: "8 files available"
-    },
-    { 
-        name: "Web Development", 
-        credits: 3, 
-        notes: ["HTML/CSS Basics", "JavaScript DOM", "Responsive Design"], 
-        materials: "12 files available"
-    },
-    { 
-        name: "Python Programming", 
-        credits: 4, 
-        notes: ["Syntax & Variables", "Functions", "OOP Concepts"], 
-        materials: "10 files available"
-    },
-    { 
-        name: "Operating Systems", 
-        credits: 4, 
-        notes: ["Process Management", "Memory Management", "File Systems"], 
-        materials: "7 files available"
-    },
-    { 
-        name: "Discrete Mathematics", 
-        credits: 3, 
-        notes: ["Set Theory", "Logic", "Combinatorics"], 
-        materials: "6 files available"
-    },
-    { 
-        name: "Software Engineering", 
-        credits: 3, 
-        notes: ["SDLC", "Design Patterns", "Testing"], 
-        materials: "9 files available"
-    }
-];
-
 // Dummy Issues Data (Stored in localStorage)
+// Core feature for minor project
 let dummyIssues = [
     { 
         id: "ISS001", 
@@ -116,38 +66,7 @@ let dummyIssues = [
     }
 ];
 
-// Dummy Proxy Requests Data (Stored in localStorage)
-let dummyProxyRequests = [
-    { 
-        id: "PRX001", 
-        subject: "Data Structures", 
-        date: "2024-12-05", 
-        period: "Lecture 1", 
-        reason: "Was sick that day",
-        status: "Pending at CR", 
-        submittedDate: "2024-12-06"
-    },
-    { 
-        id: "PRX002", 
-        subject: "Web Development", 
-        date: "2024-11-28", 
-        period: "Lecture 2", 
-        reason: "Family emergency",
-        status: "Approved", 
-        submittedDate: "2024-11-29"
-    },
-    { 
-        id: "PRX003", 
-        subject: "Python Programming", 
-        date: "2024-11-20", 
-        period: "Lecture 3", 
-        reason: "Medical appointment",
-        status: "Rejected", 
-        submittedDate: "2024-11-21"
-    }
-];
-
-// Dummy Proxy Requests from Students (For CR Only)
+// Dummy Proxy Requests from Students (For CR Only - when isCR = true)
 const dummyStudentProxyRequests = [
     { 
         id: "SPRX001", 
@@ -176,7 +95,6 @@ document.addEventListener("DOMContentLoaded", function() {
     loadStudentDashboard();
     setupEventListeners();
     loadIssues();
-    loadProxyRequests();
     checkRoleAndShowCRPanel();
 });
 
@@ -189,9 +107,10 @@ function loadStudentDashboard() {
     
     // Update role badge
     const roleBadge = document.getElementById("roleBadge");
-    if (dummyStudent.role === "cr") {
+    if (isCR) {
         roleBadge.textContent = "👑 Class Representative";
         roleBadge.style.backgroundColor = "#ffc107";
+        roleBadge.style.color = "#000";
     }
 }
 
@@ -202,15 +121,13 @@ function setupEventListeners() {
     // View Attendance
     document.getElementById("viewAttendanceBtn").addEventListener("click", showAttendanceModal);
     
-    // View Timetable
-    document.getElementById("viewTimetableBtn").addEventListener("click", showTimetableModal);
-    
-    // View Subjects
-    document.getElementById("viewSubjectsBtn").addEventListener("click", showSubjectsModal);
-    
     // Logout
     document.getElementById("logoutBtn").addEventListener("click", function() {
-        alert("Logged out successfully!");
+        // Clear session data
+        localStorage.removeItem("sc_role");
+        localStorage.removeItem("sc_credential");
+        localStorage.removeItem("sc_isCR");
+        alert("✅ Logged out successfully!");
         window.location.href = "login.html";
     });
 
@@ -220,14 +137,14 @@ function setupEventListeners() {
         closeModalBtn.addEventListener("click", closeModal);
     }
 
-    // CR Announcement Form
-    if (dummyStudent.role === "cr") {
+    // CR Announcement Form (only if user is CR)
+    if (isCR) {
         const announcementForm = document.getElementById("announcementForm");
         if (announcementForm) {
             announcementForm.addEventListener("submit", function(e) {
                 e.preventDefault();
                 const announcementText = document.getElementById("announcementText").value;
-                alert("✅ Announcement sent to all students in 3A division!\n\nMessage: " + announcementText);
+                alert("✅ Announcement sent to all students in " + dummyStudent.division + " division!\n\nMessage: " + announcementText);
                 announcementForm.reset();
             });
         }
@@ -264,36 +181,7 @@ function loadIssues() {
 }
 
 // ============================================
-// LOAD PROXY REQUESTS
-// ============================================
-function loadProxyRequests() {
-    const proxyContainer = document.getElementById("proxyRequestsContainer");
-    proxyContainer.innerHTML = "";
-
-    if (dummyProxyRequests.length === 0) {
-        proxyContainer.innerHTML = '<p style="text-align: center; color: #666;">No proxy requests submitted yet.</p>';
-        return;
-    }
-
-    dummyProxyRequests.forEach(request => {
-        const proxyCard = document.createElement("div");
-        proxyCard.className = "proxy-card";
-        proxyCard.innerHTML = `
-            <div class="proxy-header">
-                <h4>${request.subject}</h4>
-                <span class="status-badge status-${request.status.toLowerCase().replace(/\s+/g, '-')}">${request.status}</span>
-            </div>
-            <p><strong>Date:</strong> ${request.date}</p>
-            <p><strong>Period:</strong> ${request.period}</p>
-            <p><strong>Reason:</strong> ${request.reason}</p>
-            <p><small>Submitted: ${request.submittedDate}</small></p>
-        `;
-        proxyContainer.appendChild(proxyCard);
-    });
-}
-
-// ============================================
-// LOAD CR PROXY REQUESTS (For CR Panel)
+// LOAD CR PROXY REQUESTS (For CR Panel Only)
 // ============================================
 function loadCRProxyRequests() {
     const crProxyContainer = document.getElementById("crProxyRequestsContainer");
@@ -324,7 +212,7 @@ function loadCRProxyRequests() {
 // ============================================
 function checkRoleAndShowCRPanel() {
     const crPanel = document.getElementById("crPanel");
-    if (dummyStudent.role === "cr") {
+    if (isCR) {
         crPanel.style.display = "block";
         loadCRProxyRequests();
     }
@@ -361,46 +249,6 @@ function showAttendanceModal() {
     
     tableHTML += '</tbody></table>';
     modalBody.innerHTML = tableHTML;
-    modal.style.display = "block";
-}
-
-function showTimetableModal() {
-    const modal = document.getElementById("detailModal");
-    const modalBody = document.getElementById("modalBody");
-    
-    let tableHTML = '<h2>📅 Class Timetable</h2><table class="detail-table"><thead><tr><th>Day</th><th>Time</th><th>Subject</th><th>Teacher</th></tr></thead><tbody>';
-    
-    dummyTimetable.forEach(slot => {
-        tableHTML += `<tr>
-            <td>${slot.day}</td>
-            <td>${slot.time}</td>
-            <td>${slot.subject}</td>
-            <td>${slot.teacher}</td>
-        </tr>`;
-    });
-    
-    tableHTML += '</tbody></table>';
-    modalBody.innerHTML = tableHTML;
-    modal.style.display = "block";
-}
-
-function showSubjectsModal() {
-    const modal = document.getElementById("detailModal");
-    const modalBody = document.getElementById("modalBody");
-    
-    let htmlContent = '<h2>📖 Subjects & Study Materials</h2>';
-    
-    dummySubjects.forEach(subject => {
-        htmlContent += `
-            <div class="subject-card">
-                <h3>${subject.name} (Credits: ${subject.credits})</h3>
-                <p><strong>Topics:</strong> ${subject.notes.join(", ")}</p>
-                <p><strong>Materials:</strong> ${subject.materials}</p>
-            </div>
-        `;
-    });
-    
-    modalBody.innerHTML = htmlContent;
     modal.style.display = "block";
 }
 

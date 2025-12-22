@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignments - Smart Campus</title>
+    <link rel="stylesheet" href="../css/student.css">
+    <link rel="stylesheet" href="../css/assignments.css">
+    <link rel="stylesheet" href="../css/theme.css">
+</head>
+<body>
+    <!-- DARK MODE TOGGLE BUTTON -->
+    <button id="themeToggle" class="theme-toggle" title="Toggle Dark/Light Mode">
+        <span id="themeIcon">🌙</span>
+    </button>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-left">
+                <h1 class="project-title">📚 Smart Campus</h1>
+            </div>
+            <div class="navbar-right">
+                <a href="student.html" class="back-link" style="color: white; text-decoration: none; font-weight: 600;">← Back to Dashboard</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTAINER -->
+    <div class="assignment-container">
+        <div class="assignment-header">
+            <h1>📝 Assignments</h1>
+            <p>Submit your assignments before the deadline</p>
+        </div>
+
+        <!-- FILTER SECTION -->
+        <div class="filter-section">
+            <div class="filter-group">
+                <label for="assignmentStatusFilter">📊 Filter by Status:</label>
+                <select id="assignmentStatusFilter">
+                    <option value="">-- All Assignments --</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Submitted">Submitted</option>
+                    <option value="Graded">Graded</option>
+                    <option value="Overdue">Overdue</option>
+                </select>
+            </div>
+            <div class="filter-group">
+                <label for="assignmentSubjectFilter">📚 Filter by Subject:</label>
+                <select id="assignmentSubjectFilter">
+                    <option value="">-- All Subjects --</option>
+                    <option value="Data Structures">Data Structures</option>
+                    <option value="Database Management">Database Management</option>
+                    <option value="Web Development">Web Development</option>
+                </select>
+            </div>
+            <button class="filter-btn" onclick="loadAssignments()">🔍 Search</button>
+        </div>
+
+        <!-- STATS SECTION -->
+        <div class="assignment-stats">
+            <div class="stat-box">
+                <div class="stat-number" id="totalAssignments">0</div>
+                <div class="stat-label">Total Assignments</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number" id="pendingAssignments">0</div>
+                <div class="stat-label">Pending</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number" id="submittedAssignments">0</div>
+                <div class="stat-label">Submitted</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number" id="gradedAssignments">0</div>
+                <div class="stat-label">Graded</div>
+            </div>
+        </div>
+
+        <!-- ASSIGNMENTS LIST -->
+        <div class="assignments-list" id="assignmentsContainer">
+            <!-- Assignments will be loaded from JS -->
+        </div>
+    </div>
+
+    <!-- MODAL FOR ASSIGNMENT DETAILS -->
+    <div id="assignmentModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeAssignmentModal()">&times;</span>
+            <div id="assignmentModalBody"></div>
+        </div>
+    </div>
+
+    <script src="../js/theme.js"></script>
+    <script src="../js/assignments.js"></script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Download Notes - Smart Campus</title>
+    <link rel="stylesheet" href="../css/student.css">
+    <link rel="stylesheet" href="../css/download-notes.css">
+    <link rel="stylesheet" href="../css/theme.css">
+</head>
+<body>
+    <!-- DARK MODE TOGGLE BUTTON -->
+    <button id="themeToggle" class="theme-toggle" title="Toggle Dark/Light Mode">
+        <span id="themeIcon">🌙</span>
+    </button>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-left">
+                <h1 class="project-title">📚 Smart Campus</h1>
+            </div>
+            <div class="navbar-right">
+                <a href="student.html" class="back-link" style="color: white; text-decoration: none; font-weight: 600;">← Back to Dashboard</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTAINER -->
+    <div class="download-container">
+        <div class="download-header">
+            <h1>📚 Download Subject Notes</h1>
+            <p>Access PDF and PPT notes uploaded by your teachers</p>
+        </div>
+
+        <!-- FILTER SECTION -->
+        <div class="filter-section">
+            <div class="filter-group">
+                <label for="notesSubjectFilter">📚 Filter by Subject:</label>
+                <select id="notesSubjectFilter">
+                    <option value="">-- All Subjects --</option>
+                    <option value="Data Structures">Data Structures</option>
+                    <option value="Database Management">Database Management</option>
+                    <option value="Web Development">Web Development</option>
+                </select>
+            </div>
+            <button class="filter-btn" onclick="loadDownloadNotes()">🔍 Search</button>
+        </div>
+
+        <!-- NOTES GRID -->
+        <div class="notes-grid" id="downloadNotesContainer">
+            <!-- Notes will be loaded from JS -->
+        </div>
+    </div>
+
+    <!-- MODAL FOR VIEWING DETAILS -->
+    <div id="detailModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <script src="../js/theme.js"></script>
+    <script src="../js/download-notes.js"></script>
+</body>
+</html>
