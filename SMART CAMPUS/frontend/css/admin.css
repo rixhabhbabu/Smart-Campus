@@ -1,0 +1,771 @@
+/* ============================================
+   ADMIN DASHBOARD - STYLING
+   ============================================ */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --primary-color: #2196F3;
+    --secondary-color: #666;
+    --success-color: #28a745;
+    --danger-color: #dc3545;
+    --warning-color: #ffc107;
+    --background: #f5f5f5;
+    --card-background: #ffffff;
+    --text-color: #333;
+    --border-color: #ddd;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--background);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+body.dark-mode {
+    --background: #0a0e27;
+    --card-background: #1a1f3a;
+    --text-color: #e0e0e0;
+    --border-color: #333;
+    --secondary-color: #a0a0a0;
+}
+
+/* ============================================
+   NAVBAR
+   ============================================ */
+
+.navbar {
+    background: linear-gradient(135deg, var(--primary-color), #1976D2);
+    color: white;
+    padding: 1rem 2rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.nav-items {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.nav-user {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.nav-role {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.9rem;
+}
+
+.nav-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    padding: 0.5rem 0.8rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background 0.3s;
+}
+
+.nav-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* ============================================
+   CONTAINER & LAYOUT
+   ============================================ */
+
+.container {
+    display: flex;
+    max-width: 1400px;
+    margin: 0 auto;
+    gap: 2rem;
+    padding: 2rem;
+    min-height: calc(100vh - 80px);
+}
+
+/* ============================================
+   SIDEBAR
+   ============================================ */
+
+.sidebar {
+    width: 250px;
+    background: var(--card-background);
+    border-radius: 8px;
+    padding: 1.5rem 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    height: fit-content;
+    position: sticky;
+    top: 90px;
+}
+
+body.dark-mode .sidebar {
+    background: var(--card-background);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.sidebar-menu {
+    list-style: none;
+}
+
+.menu-item {
+    display: block;
+    padding: 0.8rem 1.5rem;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: all 0.3s;
+    border-left: 3px solid transparent;
+}
+
+.menu-item:hover {
+    background: rgba(33, 150, 243, 0.1);
+    border-left-color: var(--primary-color);
+    color: var(--primary-color);
+}
+
+.menu-item.active {
+    background: rgba(33, 150, 243, 0.15);
+    border-left-color: var(--primary-color);
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+body.dark-mode .menu-item:hover {
+    background: rgba(33, 150, 243, 0.15);
+}
+
+body.dark-mode .menu-item.active {
+    background: rgba(33, 150, 243, 0.2);
+}
+
+/* ============================================
+   MAIN CONTENT
+   ============================================ */
+
+.main-content {
+    flex: 1;
+    background: var(--card-background);
+    border-radius: 8px;
+    padding: 2rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .main-content {
+    background: var(--card-background);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.main-content h2 {
+    margin-bottom: 1.5rem;
+    color: var(--text-color);
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 0.5rem;
+}
+
+/* ============================================
+   SECTIONS
+   ============================================ */
+
+.section {
+    display: none;
+}
+
+.section.active {
+    display: block;
+}
+
+/* ============================================
+   STATISTICS GRID
+   ============================================ */
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.stat-card {
+    background: linear-gradient(135deg, var(--primary-color), #1976D2);
+    color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.stat-card h3 {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    opacity: 0.9;
+}
+
+.stat-value {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+/* ============================================
+   DASHBOARD SECTIONS
+   ============================================ */
+
+.dashboard-section {
+    background: rgba(33, 150, 243, 0.05);
+    border-left: 4px solid var(--primary-color);
+    padding: 1.5rem;
+    border-radius: 5px;
+    margin-bottom: 2rem;
+}
+
+body.dark-mode .dashboard-section {
+    background: rgba(33, 150, 243, 0.1);
+}
+
+.dashboard-section h3 {
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.health-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.health-item {
+    background: var(--background);
+    padding: 1rem;
+    border-radius: 5px;
+    text-align: center;
+}
+
+body.dark-mode .health-item {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.health-item strong {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+/* ============================================
+   SEARCH & FILTER
+   ============================================ */
+
+.search-bar,
+.filter-controls {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+
+.search-bar input,
+.filter-controls select {
+    flex: 1;
+    min-width: 200px;
+    padding: 0.7rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    background: var(--background);
+    color: var(--text-color);
+    font-family: inherit;
+}
+
+body.dark-mode .search-bar input,
+body.dark-mode .filter-controls select {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--border-color);
+    color: var(--text-color);
+}
+
+.search-bar input:focus,
+.filter-controls select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 5px rgba(33, 150, 243, 0.2);
+}
+
+/* ============================================
+   BUTTONS
+   ============================================ */
+
+.btn {
+    padding: 0.7rem 1.2rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: all 0.3s;
+    font-weight: 500;
+}
+
+.btn-primary {
+    background: var(--primary-color);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #1976D2;
+    box-shadow: 0 2px 8px rgba(33, 150, 243, 0.3);
+}
+
+.btn-secondary {
+    background: var(--border-color);
+    color: var(--text-color);
+}
+
+.btn-secondary:hover {
+    background: #ccc;
+}
+
+body.dark-mode .btn-secondary {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+body.dark-mode .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.btn-success {
+    background: var(--success-color);
+    color: white;
+}
+
+.btn-success:hover {
+    background: #218838;
+}
+
+.btn-danger {
+    background: var(--danger-color);
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #c82333;
+}
+
+#userFilterBtn,
+#proxyRefreshBtn,
+#issueRefreshBtn {
+    padding: 0.7rem 1.5rem;
+    background: var(--primary-color);
+    color: white;
+}
+
+/* ============================================
+   USERS LIST
+   ============================================ */
+
+.users-list {
+    display: grid;
+    gap: 1rem;
+}
+
+.user-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    background: rgba(33, 150, 243, 0.05);
+    padding: 1.2rem;
+    border-radius: 5px;
+    border-left: 3px solid var(--primary-color);
+}
+
+body.dark-mode .user-card {
+    background: rgba(33, 150, 243, 0.1);
+}
+
+.user-info h4 {
+    margin-bottom: 0.3rem;
+    color: var(--text-color);
+}
+
+.user-info p {
+    font-size: 0.9rem;
+    color: var(--secondary-color);
+    margin-bottom: 0.2rem;
+}
+
+.user-role {
+    background: var(--primary-color);
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+/* ============================================
+   PROXY LIST (GLOBAL)
+   ============================================ */
+
+.proxy-list {
+    display: grid;
+    gap: 1rem;
+}
+
+.proxy-card {
+    background: rgba(33, 150, 243, 0.05);
+    border-left: 3px solid var(--primary-color);
+    padding: 1.2rem;
+    border-radius: 5px;
+}
+
+body.dark-mode .proxy-card {
+    background: rgba(33, 150, 243, 0.1);
+}
+
+.proxy-card h4 {
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.proxy-card p {
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+    color: var(--secondary-color);
+}
+
+.proxy-status {
+    display: inline-block;
+    margin-top: 0.5rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 15px;
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+/* ============================================
+   ISSUES LIST (GLOBAL)
+   ============================================ */
+
+.issues-list {
+    display: grid;
+    gap: 1rem;
+}
+
+.issue-card {
+    background: rgba(33, 150, 243, 0.05);
+    border-left: 3px solid var(--primary-color);
+    padding: 1.2rem;
+    border-radius: 5px;
+}
+
+body.dark-mode .issue-card {
+    background: rgba(33, 150, 243, 0.1);
+}
+
+.issue-card h4 {
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.issue-card p {
+    font-size: 0.9rem;
+    margin-bottom: 0.3rem;
+    color: var(--secondary-color);
+}
+
+/* ============================================
+   FORMS
+   ============================================ */
+
+.admin-notification-form {
+    background: rgba(33, 150, 243, 0.05);
+    padding: 1.5rem;
+    border-radius: 5px;
+    max-width: 600px;
+    margin-bottom: 1rem;
+}
+
+body.dark-mode .admin-notification-form {
+    background: rgba(33, 150, 243, 0.1);
+}
+
+.form-group {
+    margin-bottom: 1.2rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--text-color);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 0.7rem;
+    border: 1px solid var(--border-color);
+    border-radius: 5px;
+    background: var(--background);
+    color: var(--text-color);
+    font-family: inherit;
+    font-size: 1rem;
+}
+
+body.dark-mode .form-group input,
+body.dark-mode .form-group select,
+body.dark-mode .form-group textarea {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: var(--border-color);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 5px rgba(33, 150, 243, 0.2);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+/* ============================================
+   REPORTS GRID
+   ============================================ */
+
+.reports-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.report-card {
+    background: rgba(33, 150, 243, 0.05);
+    border-left: 3px solid var(--primary-color);
+    padding: 1.5rem;
+    border-radius: 5px;
+    text-align: center;
+}
+
+body.dark-mode .report-card {
+    background: rgba(33, 150, 243, 0.1);
+}
+
+.report-card h4 {
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.report-card p {
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+.report-card .btn {
+    width: 100%;
+}
+
+/* ============================================
+   SYSTEM SETTINGS
+   ============================================ */
+
+.system-settings {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.setting-item {
+    background: rgba(33, 150, 243, 0.05);
+    border-left: 3px solid var(--primary-color);
+    padding: 1.5rem;
+    border-radius: 5px;
+}
+
+body.dark-mode .setting-item {
+    background: rgba(33, 150, 243, 0.1);
+}
+
+.setting-item h4 {
+    margin-bottom: 0.5rem;
+    color: var(--text-color);
+}
+
+.setting-item p {
+    color: var(--secondary-color);
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+}
+
+.setting-item .btn {
+    width: 100%;
+}
+
+/* ============================================
+   SUCCESS MESSAGE
+   ============================================ */
+
+.success-message {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+    padding: 1rem;
+    border-radius: 5px;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+body.dark-mode .success-message {
+    background: rgba(40, 167, 69, 0.2);
+    color: #90ee90;
+    border-color: rgba(40, 167, 69, 0.4);
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 1024px) {
+    .container {
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    .sidebar {
+        width: 100%;
+        position: static;
+        display: flex;
+        gap: 1rem;
+        overflow-x: auto;
+    }
+
+    .sidebar-menu {
+        display: flex;
+        gap: 0;
+        flex-wrap: wrap;
+    }
+
+    .menu-item {
+        padding: 0.6rem 1rem;
+        white-space: nowrap;
+        border-left: none;
+        border-bottom: 3px solid transparent;
+    }
+
+    .menu-item:hover,
+    .menu-item.active {
+        border-left: none;
+        border-bottom-color: var(--primary-color);
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        padding: 0.8rem 1rem;
+    }
+
+    .nav-container {
+        flex-wrap: wrap;
+        gap: 1rem;
+    }
+
+    .nav-title {
+        font-size: 1.3rem;
+    }
+
+    .nav-items {
+        gap: 0.5rem;
+    }
+
+    .main-content {
+        padding: 1rem;
+    }
+
+    .stats-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .search-bar,
+    .filter-controls {
+        flex-direction: column;
+    }
+
+    .search-bar input,
+    .filter-controls select {
+        min-width: auto;
+        width: 100%;
+    }
+
+    .reports-grid,
+    .system-settings {
+        grid-template-columns: 1fr;
+    }
+
+    .health-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0.5rem;
+    }
+
+    .main-content {
+        padding: 0.8rem;
+        border-radius: 0;
+    }
+
+    .navbar {
+        padding: 0.5rem;
+    }
+
+    .nav-title {
+        font-size: 1rem;
+    }
+
+    .nav-items {
+        gap: 0.3rem;
+        font-size: 0.9rem;
+    }
+
+    .stat-card {
+        padding: 1rem;
+    }
+
+    .stat-value {
+        font-size: 2rem;
+    }
+}

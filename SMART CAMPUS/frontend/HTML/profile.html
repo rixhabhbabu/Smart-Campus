@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - Smart Campus</title>
+    <link rel="stylesheet" href="../css/proxy.css">
+    <link rel="stylesheet" href="../css/theme.css">
+</head>
+<body>
+    <!-- DARK MODE TOGGLE BUTTON -->
+    <button id="themeToggle" class="theme-toggle" title="Toggle Dark/Light Mode">
+        <span id="themeIcon">🌙</span>
+    </button>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-left">
+                <h1 class="project-title">📚 Smart Campus</h1>
+            </div>
+            <div class="navbar-right">
+                <a href="student.html" class="back-link">← Back to Dashboard</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTAINER -->
+    <div class="container">
+        <section class="form-section">
+            <h1>👤 My Profile</h1>
+
+            <div class="profile-card">
+                <div class="profile-header">
+                    <div class="profile-avatar">👤</div>
+                    <div class="profile-info">
+                        <h2 id="profileName">Akhil Sharma</h2>
+                        <p id="profileRole" class="role-text">Class Representative</p>
+                    </div>
+                </div>
+
+                <div class="profile-details">
+                    <div class="detail-group">
+                        <h3>Personal Information</h3>
+                        <div class="detail-row">
+                            <span class="label">Name:</span>
+                            <span class="value" id="detailName">Akhil Sharma</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">Email:</span>
+                            <span class="value" id="detailEmail">akhil.sharma@college.edu</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">Mobile:</span>
+                            <span class="value" id="detailMobile">+91 9876543210</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">Date of Birth:</span>
+                            <span class="value">15-03-2003</span>
+                        </div>
+                    </div>
+
+                    <div class="detail-group">
+                        <h3>Academic Information</h3>
+                        <div class="detail-row">
+                            <span class="label">Enrollment No:</span>
+                            <span class="value" id="detailEnrollment">STU103054</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">Roll Number:</span>
+                            <span class="value">103054</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">Branch:</span>
+                            <span class="value">Computer Science & Engineering</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">Semester:</span>
+                            <span class="value" id="detailSemester">5th</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">Division:</span>
+                            <span class="value">3A</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">Role:</span>
+                            <span class="value" id="detailRoleText">Class Representative</span>
+                        </div>
+                    </div>
+
+                    <div class="detail-group">
+                        <h3>Contact Information</h3>
+                        <div class="detail-row">
+                            <span class="label">College Email:</span>
+                            <span class="value">akhil.sharma@college.edu</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">Personal Email:</span>
+                            <span class="value">akhil.sharma@gmail.com</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">Phone:</span>
+                            <span class="value">+91 9876543210</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">Emergency Contact:</span>
+                            <span class="value">+91 9123456789</span>
+                        </div>
+                    </div>
+
+                    <div class="detail-group">
+                        <h3>Address</h3>
+                        <div class="detail-row">
+                            <span class="label">Current Address:</span>
+                            <span class="value">Hostel Block A, Room 201, Smart Campus</span>
+                        </div>
+                        <div class="detail-row">
+                            <span class="label">Permanent Address:</span>
+                            <span class="value">123 Main Street, Mumbai, Maharashtra 400001</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="profile-actions">
+                    <button class="btn btn-primary" id="editProfileBtn">✏️ Edit Profile (Coming Soon)</button>
+                    <button class="btn btn-secondary" id="changePasswordBtn">🔐 Change Password (Coming Soon)</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="../js/theme.js"></script>
+    <script src="../js/student.js"></script>
+</body>
+</html>

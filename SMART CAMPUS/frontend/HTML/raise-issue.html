@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Raise Issue - Smart Campus</title>
+    <link rel="stylesheet" href="../css/proxy.css">
+    <link rel="stylesheet" href="../css/theme.css">
+</head>
+<body>
+    <!-- DARK MODE TOGGLE BUTTON -->
+    <button id="themeToggle" class="theme-toggle" title="Toggle Dark/Light Mode">
+        <span id="themeIcon">🌙</span>
+    </button>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-left">
+                <h1 class="project-title">📚 Smart Campus</h1>
+            </div>
+            <div class="navbar-right">
+                <a href="student.html" class="back-link">← Back to Dashboard</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTAINER -->
+    <div class="container">
+        <section class="form-section">
+            <h1>🆘 Raise an Issue</h1>
+            <p class="form-description">Report any problem, complaint, or feedback to the administration.</p>
+
+            <form id="issueForm" class="proxy-form">
+                <!-- Issue Category -->
+                <div class="form-group">
+                    <label for="category">Issue Category *</label>
+                    <select id="category" required>
+                        <option value="">-- Select Category --</option>
+                        <option value="Academic">Academic Issue</option>
+                        <option value="Infrastructure">Infrastructure Problem</option>
+                        <option value="Attendance">Attendance Dispute</option>
+                        <option value="Exam">Exam Related</option>
+                        <option value="Hostel">Hostel Issue</option>
+                        <option value="Fees">Fee Related</option>
+                        <option value="Transportation">Transportation Issue</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <!-- Issue Title -->
+                <div class="form-group">
+                    <label for="title">Issue Title *</label>
+                    <input type="text" id="title" placeholder="Brief title of the issue" required>
+                </div>
+
+                <!-- Issue Description -->
+                <div class="form-group">
+                    <label for="description">Description *</label>
+                    <textarea id="description" placeholder="Describe your issue in detail..." rows="6" required></textarea>
+                </div>
+
+                <!-- Priority -->
+                <div class="form-group">
+                    <label for="priority">Priority Level</label>
+                    <select id="priority">
+                        <option value="Low">Low</option>
+                        <option value="Medium" selected>Medium</option>
+                        <option value="High">High</option>
+                        <option value="Critical">Critical</option>
+                    </select>
+                </div>
+
+                <!-- Proof Upload -->
+                <div class="form-group">
+                    <label for="issuProof">Supporting Document (Optional)</label>
+                    <input type="file" id="issueProof" accept=".pdf,.jpg,.png,.jpeg,.doc,.docx,.mp4">
+                    <small>Accepted formats: PDF, Image, Document, Video (Max 10MB)</small>
+                </div>
+
+                <!-- Buttons -->
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Submit Issue</button>
+                    <a href="student.html" class="btn btn-secondary">Cancel</a>
+                </div>
+            </form>
+
+            <!-- Submission Message -->
+            <div id="issueSuccessMessage" class="success-message" style="display: none;">
+                ✅ Issue submitted successfully! Ticket ID: <span id="ticketId"></span>. You'll receive updates via notification.
+            </div>
+        </section>
+
+        <!-- FAQ SECTION -->
+        <section class="info-section">
+            <h2>❓ Frequently Asked Questions</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <h3>How long does it take to resolve an issue?</h3>
+                    <p>Response time depends on priority: Low (5-7 days), Medium (2-3 days), High (24 hours), Critical (Immediate)</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Can I track my issue status?</h3>
+                    <p>Yes, you'll receive notifications on status updates. Check your dashboard or notifications page.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>What if I need to add more information?</h3>
+                    <p>You can reply to your ticket through notifications or contact your CR/HOD directly.</p>
+                </div>
+                <div class="faq-item">
+                    <h3>Is my issue confidential?</h3>
+                    <p>Yes, your issue will be handled confidentially by authorized personnel only.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="../js/theme.js"></script>
+    <script src="../js/proxy.js"></script>
+</body>
+</html>

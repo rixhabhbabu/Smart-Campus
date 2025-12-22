@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Request Proxy Attendance - Smart Campus</title>
+    <link rel="stylesheet" href="../css/proxy.css">
+    <link rel="stylesheet" href="../css/theme.css">
+</head>
+<body>
+    <!-- DARK MODE TOGGLE BUTTON -->
+    <button id="themeToggle" class="theme-toggle" title="Toggle Dark/Light Mode">
+        <span id="themeIcon">🌙</span>
+    </button>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-left">
+                <h1 class="project-title">📚 Smart Campus</h1>
+            </div>
+            <div class="navbar-right">
+                <a href="student.html" class="back-link">← Back to Dashboard</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTAINER -->
+    <div class="container">
+        <section class="form-section">
+            <h1>🎫 Request Proxy Attendance</h1>
+            <p class="form-description">Fill out the form below to request proxy attendance for a lecture you couldn't attend.</p>
+
+            <form id="proxyRequestForm" class="proxy-form">
+                <!-- Subject Dropdown -->
+                <div class="form-group">
+                    <label for="subject">Subject *</label>
+                    <select id="subject" required>
+                        <option value="">-- Select Subject --</option>
+                        <option value="Data Structures">Data Structures</option>
+                        <option value="Database Management">Database Management</option>
+                        <option value="Web Development">Web Development</option>
+                        <option value="Python Programming">Python Programming</option>
+                        <option value="Operating Systems">Operating Systems</option>
+                        <option value="Discrete Mathematics">Discrete Mathematics</option>
+                        <option value="Software Engineering">Software Engineering</option>
+                    </select>
+                </div>
+
+                <!-- Date Picker -->
+                <div class="form-group">
+                    <label for="proxyDate">Date of Lecture *</label>
+                    <input type="date" id="proxyDate" required>
+                </div>
+
+                <!-- Period/Lecture -->
+                <div class="form-group">
+                    <label for="period">Lecture / Period *</label>
+                    <input type="text" id="period" placeholder="e.g., Lecture 3, Period 2" required>
+                </div>
+
+                <!-- Reason -->
+                <div class="form-group">
+                    <label for="reason">Reason for Absence *</label>
+                    <textarea id="reason" placeholder="Explain why you couldn't attend..." rows="5" required></textarea>
+                </div>
+
+                <!-- Proof Upload -->
+                <div class="form-group">
+                    <label for="proof">Proof / Supporting Document (Optional)</label>
+                    <input type="file" id="proof" accept=".pdf,.jpg,.png,.jpeg,.doc,.docx">
+                    <small>Accepted formats: PDF, JPG, PNG, DOC, DOCX (Max 5MB)</small>
+                </div>
+
+                <!-- Buttons -->
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Submit Request</button>
+                    <a href="student.html" class="btn btn-secondary">Cancel</a>
+                </div>
+            </form>
+
+            <!-- Submission Message -->
+            <div id="successMessage" class="success-message" style="display: none;">
+                ✅ Proxy request submitted successfully! It has been sent to your CR for review.
+            </div>
+        </section>
+
+        <!-- INFORMATION SECTION -->
+        <section class="info-section">
+            <h2>📌 Proxy Attendance Process</h2>
+            <div class="info-steps">
+                <div class="step">
+                    <h3>Step 1: Submit Request</h3>
+                    <p>Fill the form above and submit your proxy request with valid reason.</p>
+                </div>
+                <div class="step">
+                    <h3>Step 2: CR Review</h3>
+                    <p>Your Class Representative will review your request within 24 hours.</p>
+                </div>
+                <div class="step">
+                    <h3>Step 3: Teacher Approval</h3>
+                    <p>If approved by CR, it goes to the teacher for final approval.</p>
+                </div>
+                <div class="step">
+                    <h3>Step 4: Status Update</h3>
+                    <p>You'll receive notification once approved or rejected.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="../js/theme.js"></script>
+    <script src="../js/proxy.js"></script>
+</body>
+</html>

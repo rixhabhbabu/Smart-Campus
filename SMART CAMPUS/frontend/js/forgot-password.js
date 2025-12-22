@@ -99,7 +99,7 @@ resetPasswordBtn.addEventListener("click", function () {
     
     // Redirect to login after success
     setTimeout(function () {
-        window.location.href = "index.html";
+        window.location.href = "login.html";
     }, 2000);
 });
 

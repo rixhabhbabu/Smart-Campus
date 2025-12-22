@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Announcements - Smart Campus</title>
+    <link rel="stylesheet" href="../css/notification.css">
+    <link rel="stylesheet" href="../css/theme.css">
+</head>
+<body>
+    <!-- DARK MODE TOGGLE BUTTON -->
+    <button id="themeToggle" class="theme-toggle" title="Toggle Dark/Light Mode">
+        <span id="themeIcon">🌙</span>
+    </button>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-left">
+                <h1 class="project-title">📚 Smart Campus</h1>
+            </div>
+            <div class="navbar-right">
+                <a href="student.html" class="back-link">← Back to Dashboard</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTAINER -->
+    <div class="container">
+        <section class="notifications-section">
+            <h1>📢 Announcements</h1>
+
+            <!-- Filter Buttons -->
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="college">College</button>
+                <button class="filter-btn" data-filter="class">Class</button>
+                <button class="filter-btn" data-filter="dept">Department</button>
+            </div>
+
+            <!-- Announcements List -->
+            <div id="announcementsContainer" class="notifications-list">
+                <!-- Announcements will be loaded from JS -->
+            </div>
+
+            <!-- Empty State -->
+            <div id="emptyState" class="empty-state" style="display: none;">
+                <p>📭 No announcements yet!</p>
+            </div>
+        </section>
+    </div>
+
+    <script src="../js/theme.js"></script>
+    <script src="../js/announcements.js"></script>
+</body>
+</html>

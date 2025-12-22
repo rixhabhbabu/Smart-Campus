@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Smart Campus</title>
+    <link rel="stylesheet" href="../css/admin.css">
+    <link rel="stylesheet" href="../css/theme.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="nav-title">🏫 Smart Campus</h1>
+            <div class="nav-items">
+                <span class="nav-user">👨‍💼 <span id="adminName">Admin</span></span>
+                <span class="nav-role">👑 Admin</span>
+                <button class="nav-btn" id="themeToggle">🌙</button>
+                <button class="nav-btn" id="logoutBtn">🚪</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <ul class="sidebar-menu">
+                <li><a href="#dashboard" class="menu-item active" data-section="dashboard">📊 Dashboard</a></li>
+                <li><a href="#users" class="menu-item" data-section="users">👥 All Users</a></li>
+                <li><a href="#proxy" class="menu-item" data-section="proxy">📋 Proxy Requests</a></li>
+                <li><a href="#issues" class="menu-item" data-section="issues">⚠️ All Issues</a></li>
+                <li><a href="#notifications" class="menu-item" data-section="notifications">📢 Send Notification</a></li>
+                <li><a href="#reports" class="menu-item" data-section="reports">📈 Reports</a></li>
+                <li><a href="#system" class="menu-item" data-section="system">⚙️ System</a></li>
+            </ul>
+        </aside>
+
+        <!-- Content Area -->
+        <main class="main-content">
+            <!-- Dashboard Section -->
+            <section id="dashboard" class="section active">
+                <h2>📊 Admin Dashboard</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>👥 Total Users</h3>
+                        <p class="stat-value" id="totalUsers">80</p>
+                        <p style="color: var(--secondary-color); font-size: 0.9rem;"><span id="userBreakdown"></span></p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>🎓 Total Students</h3>
+                        <p class="stat-value" id="totalStudents">60</p>
+                        <p style="color: var(--secondary-color); font-size: 0.9rem;"><span id="studentDetails"></span></p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>👨‍🏫 Total Teachers</h3>
+                        <p class="stat-value" id="totalTeachers">12</p>
+                        <p style="color: var(--secondary-color); font-size: 0.9rem;"><span id="teacherDetails"></span></p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>📋 Pending Tasks</h3>
+                        <p class="stat-value" id="pendingTasks">15</p>
+                        <p style="color: var(--secondary-color); font-size: 0.9rem;"><span id="tasksBreakdown"></span></p>
+                    </div>
+                </div>
+
+                <!-- System Health -->
+                <div class="dashboard-section">
+                    <h3>🏥 System Health</h3>
+                    <div class="health-grid">
+                        <div class="health-item">
+                            <strong>Database Status</strong>
+                            <p style="color: #28a745; font-size: 1.1rem;">✅ Operational</p>
+                        </div>
+                        <div class="health-item">
+                            <strong>API Status</strong>
+                            <p style="color: #28a745; font-size: 1.1rem;">✅ Operational</p>
+                        </div>
+                        <div class="health-item">
+                            <strong>User Sessions</strong>
+                            <p style="color: #28a745; font-size: 1.1rem;">✅ 42 Active</p>
+                        </div>
+                        <div class="health-item">
+                            <strong>Last Updated</strong>
+                            <p style="color: #666; font-size: 0.9rem;"><span id="lastUpdateTime"></span></p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Users Section -->
+            <section id="users" class="section">
+                <h2>👥 All Users Management</h2>
+                <div class="search-bar">
+                    <input type="text" id="userSearchInput" placeholder="Search by name, email, or role...">
+                    <button id="userFilterBtn">🔍 Search</button>
+                </div>
+                <div class="users-list" id="usersList"></div>
+            </section>
+
+            <!-- Proxy Requests Section -->
+            <section id="proxy" class="section">
+                <h2>📋 All Proxy Requests (Global View)</h2>
+                <div class="filter-controls">
+                    <select id="proxyStatusFilter">
+                        <option value="">All Statuses</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Approved">Approved</option>
+                        <option value="Rejected">Rejected</option>
+                    </select>
+                    <button id="proxyRefreshBtn">🔄 Refresh</button>
+                </div>
+                <div class="proxy-list" id="globalProxyList"></div>
+            </section>
+
+            <!-- Issues Section -->
+            <section id="issues" class="section">
+                <h2>⚠️ All Issues (Global View)</h2>
+                <div class="filter-controls">
+                    <select id="issuePriorityFilter">
+                        <option value="">All Priorities</option>
+                        <option value="High">High Priority</option>
+                        <option value="Medium">Medium Priority</option>
+                        <option value="Low">Low Priority</option>
+                    </select>
+                    <select id="issueStatusFilter">
+                        <option value="">All Statuses</option>
+                        <option value="Pending">Pending</option>
+                        <option value="In Progress">In Progress</option>
+                        <option value="Resolved">Resolved</option>
+                    </select>
+                    <button id="issueRefreshBtn">🔄 Refresh</button>
+                </div>
+                <div class="issues-list" id="globalIssuesList"></div>
+            </section>
+
+            <!-- Notifications Section -->
+            <section id="notifications" class="section">
+                <h2>📢 Send System-Wide Notification</h2>
+                <form id="adminNotificationForm" class="admin-notification-form">
+                    <div class="form-group">
+                        <label for="notificationType">Notification Type:</label>
+                        <select id="notificationType" required>
+                            <option value="">Select Type</option>
+                            <option value="Urgent">🔴 Urgent</option>
+                            <option value="Important">🟠 Important</option>
+                            <option value="General">🟢 General</option>
+                            <option value="Event">📅 Event</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="notificationTitle">Title:</label>
+                        <input type="text" id="notificationTitle" placeholder="Enter notification title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="notificationMessage">Message:</label>
+                        <textarea id="notificationMessage" placeholder="Enter notification message" rows="4" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="notificationTarget">Send To:</label>
+                        <select id="notificationTarget" required>
+                            <option value="all">All Users</option>
+                            <option value="students">All Students</option>
+                            <option value="teachers">All Teachers</option>
+                            <option value="cr">All CRs</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">📤 Send Notification</button>
+                </form>
+                <div id="notificationSuccess" class="success-message" style="display: none;">
+                    ✅ Notification sent successfully to all recipients!
+                </div>
+            </section>
+
+            <!-- Reports Section -->
+            <section id="reports" class="section">
+                <h2>📈 System Reports</h2>
+                <div class="reports-grid">
+                    <div class="report-card">
+                        <h4>📊 Attendance Report</h4>
+                        <p>Generate attendance statistics across all classes</p>
+                        <button class="btn btn-secondary" onclick="generateAttendanceReport()">Generate</button>
+                    </div>
+                    <div class="report-card">
+                        <h4>📋 Proxy Analysis</h4>
+                        <p>View proxy approval trends and patterns</p>
+                        <button class="btn btn-secondary" onclick="generateProxyAnalysis()">Generate</button>
+                    </div>
+                    <div class="report-card">
+                        <h4>⚠️ Issue Summary</h4>
+                        <p>Get insights on common issues reported</p>
+                        <button class="btn btn-secondary" onclick="generateIssueSummary()">Generate</button>
+                    </div>
+                    <div class="report-card">
+                        <h4>👥 User Activity</h4>
+                        <p>Monitor user login and activity logs</p>
+                        <button class="btn btn-secondary" onclick="generateActivityReport()">Generate</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- System Section -->
+            <section id="system" class="section">
+                <h2>⚙️ System Settings</h2>
+                <div class="system-settings">
+                    <div class="setting-item">
+                        <h4>🔐 Security</h4>
+                        <p>Two-factor authentication: <strong style="color: #28a745;">Enabled</strong></p>
+                        <button class="btn btn-secondary" onclick="manageSecuritySettings()">Manage</button>
+                    </div>
+                    <div class="setting-item">
+                        <h4>📧 Email Configuration</h4>
+                        <p>Email notifications: <strong style="color: #28a745;">Active</strong></p>
+                        <button class="btn btn-secondary" onclick="manageEmailSettings()">Manage</button>
+                    </div>
+                    <div class="setting-item">
+                        <h4>🗑️ Backup & Cleanup</h4>
+                        <p>Last backup: <strong>Today at 02:30 AM</strong></p>
+                        <button class="btn btn-secondary" onclick="performBackup()">Backup Now</button>
+                    </div>
+                    <div class="setting-item">
+                        <h4>📝 Activity Log</h4>
+                        <p>View all system activities and changes</p>
+                        <button class="btn btn-secondary" onclick="viewActivityLog()">View Logs</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../js/theme.js"></script>
+    <script src="../js/admin.js"></script>
+</body>
+</html>

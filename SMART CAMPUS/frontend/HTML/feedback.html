@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback - Smart Campus</title>
+    <link rel="stylesheet" href="../css/proxy.css">
+    <link rel="stylesheet" href="../css/theme.css">
+    <style>
+        .star-rating {
+            display: flex;
+            gap: 0.5rem;
+            margin: 1rem 0;
+            font-size: 2rem;
+        }
+        .star {
+            cursor: pointer;
+            color: #ddd;
+            transition: all 0.2s;
+        }
+        .star:hover,
+        .star.active {
+            color: var(--warning-color);
+            transform: scale(1.2);
+        }
+        .form-group.checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .form-group.checkbox-group input {
+            width: auto;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- DARK MODE TOGGLE BUTTON -->
+    <button id="themeToggle" class="theme-toggle" title="Toggle Dark/Light Mode">
+        <span id="themeIcon">🌙</span>
+    </button>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-left">
+                <h1 class="project-title">📚 Smart Campus</h1>
+            </div>
+            <div class="navbar-right">
+                <a href="student.html" class="back-link">← Back to Dashboard</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTAINER -->
+    <div class="container">
+        <section class="form-section">
+            <h1>📝 Send Feedback</h1>
+            <p class="form-description">Help us improve! Share your feedback about teachers, subjects, or the system.</p>
+
+            <form id="feedbackForm" class="proxy-form">
+                <!-- Feedback Type -->
+                <div class="form-group">
+                    <label for="feedbackType">Feedback Type *</label>
+                    <select id="feedbackType" required>
+                        <option value="">-- Select Type --</option>
+                        <option value="Teacher">Teacher Feedback</option>
+                        <option value="Subject">Subject/Course Feedback</option>
+                        <option value="System">System/Portal Feedback</option>
+                        <option value="Facility">Facility Feedback</option>
+                        <option value="General">General Suggestion</option>
+                    </select>
+                </div>
+
+                <!-- Target (conditional) -->
+                <div class="form-group">
+                    <label for="feedbackTarget">Teacher/Subject Name (if applicable)</label>
+                    <input type="text" id="feedbackTarget" placeholder="e.g., Dr. Rajesh Kumar or Data Structures">
+                </div>
+
+                <!-- Rating -->
+                <div class="form-group">
+                    <label>Rating *</label>
+                    <div class="star-rating" id="starRating">
+                        <span class="star" data-value="1">⭐</span>
+                        <span class="star" data-value="2">⭐</span>
+                        <span class="star" data-value="3">⭐</span>
+                        <span class="star" data-value="4">⭐</span>
+                        <span class="star" data-value="5">⭐</span>
+                    </div>
+                    <input type="hidden" id="ratingValue" value="0" required>
+                    <small id="ratingText" style="color: var(--secondary-color);">Please select a rating</small>
+                </div>
+
+                <!-- Feedback Message -->
+                <div class="form-group">
+                    <label for="feedbackMessage">Your Feedback *</label>
+                    <textarea id="feedbackMessage" placeholder="Share your detailed feedback..." rows="6" required></textarea>
+                </div>
+
+                <!-- Anonymous Option -->
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="anonymousFeedback">
+                    <label for="anonymousFeedback">Submit Anonymously</label>
+                </div>
+
+                <!-- Buttons -->
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Submit Feedback</button>
+                    <a href="student.html" class="btn btn-secondary">Cancel</a>
+                </div>
+            </form>
+
+            <!-- Success Message -->
+            <div id="feedbackSuccessMessage" class="success-message" style="display: none;">
+                ✅ Thank you for your feedback! Your response helps us improve the platform.
+            </div>
+        </section>
+
+        <!-- Previous Feedback -->
+        <section class="info-section">
+            <h2>📋 Your Feedback History</h2>
+            <div id="feedbackHistoryContainer" style="display: flex; flex-direction: column; gap: 1rem;">
+                <!-- Feedback history will be loaded from JS -->
+            </div>
+        </section>
+    </div>
+
+    <script src="../js/theme.js"></script>
+    <script src="../js/feedback.js"></script>
+</body>
+</html>

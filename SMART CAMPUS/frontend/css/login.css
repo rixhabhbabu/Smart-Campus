@@ -20,8 +20,13 @@ body {
 
 /* LEFT SIDE */
 .left {
-    width: 45%;
+    /* width: 45%;
     background: #eef4ff;
+    border-radius: 18px 0 0 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center; */
+    background-color: var(--left-bg);
     border-radius: 18px 0 0 18px;
     display: flex;
     justify-content: center;
@@ -120,6 +125,7 @@ button:hover {
   --border-color: #ccc;
   --input-bg: #ffffff;
   --button-bg: #007bff;
+  --left-bg: #eef4ff;
 }
 
 body.dark-mode {
@@ -129,6 +135,7 @@ body.dark-mode {
   --border-color: #444444;
   --input-bg: #2d2d2d;
   --button-bg: #0056b3;
+  --left-bg: #0f172a;
 }
 
 body {

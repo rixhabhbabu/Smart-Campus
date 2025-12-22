@@ -46,9 +46,9 @@ document.getElementById("loginBtn").onclick = function () {
     localStorage.setItem("sc_credential", emailOrMobile);
 
     // Redirect according to role
-    if (role === "Admin") location.href = "admin-dashboard.html";
-    else if (role === "Teacher") location.href = "teacher-dashboard.html";
-    else if (role === "HOD") location.href = "hod-dashboard.html";
-    else if (role === "CR") location.href = "cr-dashboard.html";
-    else location.href = "student-dashboard.html";
+    if (role === "Admin") location.href = "admin.html";
+    else if (role === "Teacher") location.href = "teacher.html";
+    else if (role === "HOD") location.href = "student.html";
+    else if (role === "CR") location.href = "student.html";
+    else location.href = "student.html";
 };

@@ -1,120 +1,176 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Student Dashboard</title>
-    <link rel="stylesheet" href="frontend/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Campus - Student Dashboard</title>
+    <link rel="stylesheet" href="../css/student.css">
+    <link rel="stylesheet" href="../css/theme.css">
 </head>
-
 <body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-left">
+                <img src="../assets/images/logo.png" class="navbar-logo" alt="Smart Campus Logo">
+                <h1 class="project-title">📚 Smart Campus</h1>
+            </div>
+            <div class="navbar-center">
+                <span class="student-name">👤 <span id="studentName">Akhil Sharma</span></span>
+                <span class="role-badge" id="roleBadge">🎓 Student</span>
+            </div>
+            <div class="navbar-right">
+                <button id="themeToggle" class="theme-toggle" title="Toggle Dark/Light Mode">
+                    <span id="themeIcon">🌙</span>
+                </button>
+                <button id="logoutBtn" class="logout-btn">Logout</button>
+            </div>
+        </div>
+    </nav>
 
-<!-- Sidebar -->
-<div class="sidebar">
-    <img src="assets/images/profile.png">
-    <h3>Hey, Rishabh</h3>
-    <p>Roll No: 21CSE120</p>
+    <!-- MAIN CONTAINER -->
+    <div class="container">
+        
+        <!-- DASHBOARD STATS SECTION -->
+        <section class="dashboard-stats">
+            <div class="stat-card">
+                <h3>📊 Attendance</h3>
+                <p class="stat-value" id="attendancePercentage">85%</p>
+            </div>
+            <div class="stat-card">
+                <h3>📅 Semester</h3>
+                <p class="stat-value">5th</p>
+            </div>
+            <div class="stat-card">
+                <h3>👥 Division</h3>
+                <p class="stat-value">3A</p>
+            </div>
+            <div class="stat-card">
+                <h3>📚 Total Subjects</h3>
+                <p class="stat-value">7</p>
+            </div>
+        </section>
 
-    <a href="#">Dashboard</a>
-    <a href="#">Attendance</a>
-    <a href="#">Notes</a>
-    <a href="#">Issues</a>
-    <a href="#">Leave Status</a>
-    <a href="#" onclick="logout()">Logout</a>
-</div>
+        <!-- STUDENT FEATURES SECTION -->
+        <section class="features-section">
+            <h2>📋 Quick Actions</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>� My Profile</h3>
+                    <p>View and manage profile</p>
+                    <a href="profile.html" class="btn btn-primary">View Profile</a>
+                </div>
 
-<!-- Topbar -->
-<div class="topbar">
-    <h2>Student Dashboard</h2>
-    <div>
-        <button style="padding:8px 16px;border:none;background:#5236ff;color:white;border-radius:8px;">Dark Mode</button>
+                <div class="feature-card">
+                    <h3>👁️ View Attendance</h3>
+                    <p>Check your attendance record</p>
+                    <button class="btn btn-primary" id="viewAttendanceBtn">View Details</button>
+                </div>
+
+                <div class="feature-card">
+                    <h3>🎫 Request Proxy Attendance</h3>
+                    <p>Submit proxy attendance request</p>
+                    <a href="proxy_request.html" class="btn btn-primary">Request Proxy</a>
+                </div>
+
+                <div class="feature-card">
+                    <h3>🆘 Raise Issue</h3>
+                    <p>Report any problem or complaint</p>
+                    <a href="raise-issue.html" class="btn btn-primary">Raise Issue</a>
+                </div>
+
+                <div class="feature-card">
+                    <h3>🔔 View Notifications</h3>
+                    <p>Check announcements and messages</p>
+                    <a href="notification.html" class="btn btn-primary">View Notifications</a>
+                </div>
+
+                <div class="feature-card">
+                    <h3>📅 View Timetable</h3>
+                    <p>Check class schedule</p>
+                    <button class="btn btn-primary" id="viewTimetableBtn">View Timetable</button>
+                </div>
+
+                <div class="feature-card">
+                    <h3>📖 Subjects & Notes</h3>
+                    <p>View study materials</p>
+                    <button class="btn btn-primary" id="viewSubjectsBtn">View Subjects</button>
+                </div>
+
+                <div class="feature-card">
+                    <h3>📝 Send Feedback</h3>
+                    <p>Share your feedback and suggestions</p>
+                    <a href="feedback.html" class="btn btn-primary">Send Feedback</a>
+                </div>
+
+                <div class="feature-card">
+                    <h3>📢 View Announcements</h3>
+                    <p>View all college and class announcements</p>
+                    <a href="announcements.html" class="btn btn-primary">View Announcements</a>
+                </div>
+
+                <div class="feature-card">
+                    <h3>📜 View Results</h3>
+                    <p>Check semester results and marks</p>
+                    <a href="results.html" class="btn btn-primary">View Results</a>
+                </div>
+
+                <div class="feature-card">
+                    <h3>🕒 Activity History</h3>
+                    <p>View all your recent activities</p>
+                    <a href="activity.html" class="btn btn-primary">View History</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ISSUES MANAGEMENT SECTION -->
+        <section class="issues-section">
+            <h2>🆘 My Issues</h2>
+            <div id="issuesContainer" class="issues-list">
+                <!-- Issues will be loaded from JS -->
+            </div>
+        </section>
+
+        <!-- PROXY ATTENDANCE STATUS SECTION -->
+        <section class="proxy-section">
+            <h2>🎫 Proxy Attendance Status</h2>
+            <div id="proxyRequestsContainer" class="proxy-list">
+                <!-- Proxy requests will be loaded from JS -->
+            </div>
+        </section>
+
+        <!-- CR PANEL (HIDDEN BY DEFAULT) -->
+        <section class="cr-panel" id="crPanel" style="display: none;">
+            <h2>👑 Class Representative Panel</h2>
+            
+            <!-- CR Proxy Requests Review -->
+            <div class="cr-subsection">
+                <h3>📝 Pending Proxy Requests from Students</h3>
+                <div id="crProxyRequestsContainer" class="cr-proxy-list">
+                    <!-- CR proxy requests will be loaded from JS -->
+                </div>
+            </div>
+
+            <!-- CR Announcement Form -->
+            <div class="cr-subsection">
+                <h3>📢 Send Class Announcement</h3>
+                <form id="announcementForm" class="announcement-form">
+                    <textarea id="announcementText" placeholder="Type your announcement here..." rows="5" required></textarea>
+                    <button type="submit" class="btn btn-primary">Send Announcement</button>
+                </form>
+            </div>
+        </section>
     </div>
-</div>
 
-<!-- Content -->
-<div class="content">
-
-    <h2>Attendance</h2>
-
-    <div class="attendance-cards">
-
-        <div class="card">
-            <h3>Computer Architecture</h3>
-            <p>27 / 30</p>
-            <div class="circle"></div>
-            <p>81% • Last 24 Hours</p>
+    <!-- MODAL FOR VIEWING DETAILS -->
+    <div id="detailModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="modalBody"></div>
         </div>
-
-        <div class="card">
-            <h3>Database Management</h3>
-            <p>24 / 25</p>
-            <div class="circle"></div>
-            <p>96% • Last 24 Hours</p>
-        </div>
-
-        <div class="card">
-            <h3>Network Security</h3>
-            <p>25 / 27</p>
-            <div class="circle"></div>
-            <p>92% • Last 24 Hours</p>
-        </div>
-
     </div>
 
-    <br><br>
-
-    <!-- Leave & Issue Status -->
-    <div class="attendance-cards">
-
-        <div class="card">
-            <h3>Leave Status</h3>
-            <p>Approved: 1</p>
-            <p>Pending: 0</p>
-        </div>
-
-        <div class="card">
-            <h3>Issue Status</h3>
-            <p>Open: 1</p>
-            <p>Resolved: 3</p>
-        </div>
-
-        <div class="card">
-            <h3>Notes</h3>
-            <p>12 Notes Available</p>
-        </div>
-
-    </div>
-
-    <!-- Announcements -->
-    <div class="ann-box">
-        <h2>Announcements</h2>
-        <p><b>Academic:</b> Mid Term exam notice uploaded.</p>
-        <p><b>Training:</b> Summer internship registration open.</p>
-    </div>
-
-    <!-- Timetable -->
-    <h2 style="margin-top:30px;">Today's Timetable</h2>
-    <div class="table-box">
-        <table>
-            <tr>
-                <th>Time</th>
-                <th>Room No.</th>
-                <th>Subject</th>
-            </tr>
-            <tr>
-                <td>10 AM – 11 AM</td>
-                <td>33-309</td>
-                <td>DBMS130 (Lecture)</td>
-            </tr>
-            <tr>
-                <td>11 AM – 12 PM</td>
-                <td>38-719</td>
-                <td>CS200 (Lecture)</td>
-            </tr>
-        </table>
-    </div>
-
-</div>
-
-<script src="js/script.js"></script>
-
+    <script src="../js/theme.js"></script>
+    <script src="../js/student.js"></script>
 </body>
 </html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results - Smart Campus</title>
+    <link rel="stylesheet" href="../css/proxy.css">
+    <link rel="stylesheet" href="../css/theme.css">
+    <style>
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .result-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            border-top: 4px solid var(--primary-color);
+        }
+        body.dark-mode .result-card {
+            background: #2d2d2d;
+            color: #e0e0e0;
+        }
+        .result-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        .marks-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #eee;
+        }
+        body.dark-mode .marks-row {
+            border-bottom-color: #444;
+        }
+        .grade-badge {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        .grade-a {
+            background: #d4edda;
+            color: #155724;
+        }
+        .grade-b {
+            background: #d1ecf1;
+            color: #0c5460;
+        }
+        .grade-c {
+            background: #fff3cd;
+            color: #856404;
+        }
+        .cgpa-section {
+            background: linear-gradient(135deg, var(--primary-color), #0056b3);
+            color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        .cgpa-value {
+            font-size: 3rem;
+            font-weight: bold;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- DARK MODE TOGGLE BUTTON -->
+    <button id="themeToggle" class="theme-toggle" title="Toggle Dark/Light Mode">
+        <span id="themeIcon">🌙</span>
+    </button>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-left">
+                <h1 class="project-title">📚 Smart Campus</h1>
+            </div>
+            <div class="navbar-right">
+                <a href="student.html" class="back-link">← Back to Dashboard</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTAINER -->
+    <div class="container">
+        <section class="form-section">
+            <h1>📜 Academic Results</h1>
+
+            <!-- CGPA Section -->
+            <div class="cgpa-section">
+                <h2>Cumulative GPA (CGPA)</h2>
+                <p class="cgpa-value">8.42</p>
+                <p>Out of 10.0</p>
+            </div>
+
+            <!-- Results by Semester -->
+            <div class="results-grid" id="resultsContainer">
+                <!-- Results will be loaded from JS -->
+            </div>
+        </section>
+
+        <!-- Result Summary -->
+        <section class="info-section">
+            <h2>📊 Overall Performance</h2>
+            <div style="display: grid; gap: 1rem;">
+                <div style="padding: 1rem; background: #f8f9fa; border-radius: 8px;">
+                    <p><strong>Total Credits Completed:</strong> 140 / 160</p>
+                </div>
+                <div style="padding: 1rem; background: #f8f9fa; border-radius: 8px;">
+                    <p><strong>Current Semester Grade:</strong> <span class="grade-badge grade-a">A</span></p>
+                </div>
+                <div style="padding: 1rem; background: #f8f9fa; border-radius: 8px;">
+                    <p><strong>Attendance Status:</strong> Good (85%+)</p>
+                </div>
+                <div style="padding: 1rem; background: #f8f9fa; border-radius: 8px;">
+                    <p><strong>Academic Standing:</strong> Excellent</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script src="../js/theme.js"></script>
+    <script src="../js/results.js"></script>
+</body>
+</html>
