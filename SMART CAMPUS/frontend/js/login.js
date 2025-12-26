@@ -59,8 +59,8 @@ document.getElementById("loginBtn").onclick = function () {
     }
 
     // Redirect according to role
-    if (role === "Admin") location.href = "admin.html";
-    else if (role === "Teacher") location.href = "teacher.html";
-    else if (role === "HOD") location.href = "student.html";
-    else location.href = "student.html"; // Both Student and CR go to student.html
+    if (role === "Admin") location.href = "admin/admin.html";
+    else if (role === "Teacher") location.href = "teacher/teacher.html";
+    else if (role === "HOD") location.href = "hod/hod.html";
+    else location.href = "student/student.html"; // Both Student and CR go to student.html
 };

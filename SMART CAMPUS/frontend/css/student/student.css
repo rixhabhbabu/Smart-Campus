@@ -45,13 +45,15 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 8px 12px;
+    padding: 10px 12px;
     padding-left: max(12px, env(safe-area-inset-left));
     padding-right: max(12px, env(safe-area-inset-right));
-    padding-top: max(8px, env(safe-area-inset-top));
+    padding-top: max(10px, env(safe-area-inset-top));
     position: sticky;
     top: 0;
     z-index: 1000;
+    height: 60px;
+    min-height: 60px;
 }
 
 .nav-left, .nav-right {
@@ -74,6 +76,18 @@ body {
     font-weight: bold;
 }
 
+@media (max-width: 480px) {
+    .nav-title {
+        font-size: 14px;
+        display: none;
+    }
+    
+    .nav-logo {
+        height: 32px;
+        width: 32px;
+    }
+}
+
 .nav-btn {
     background: rgba(255,255,255,0.15);
     border: none;
@@ -83,6 +97,19 @@ body {
     border-radius: 6px;
     cursor: pointer;
     font-size: 16px;
+    transition: var(--transition);
+}
+
+.nav-btn:active {
+    transform: scale(0.95);
+}
+
+@media (max-width: 480px) {
+    .nav-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 14px;
+    }
 }
 
 #themeToggle { background: #667eea; }
@@ -181,6 +208,20 @@ body {
     margin-bottom: 0;
     display: none;
     overflow: hidden;
+}
+
+@media (max-width: 768px) {
+    .content-section {
+        padding: 1.5rem;
+        border-radius: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .content-section {
+        padding: 1rem;
+        border-radius: 6px;
+    }
 }
 
 .content-section.active {
@@ -418,8 +459,10 @@ body {
 .profile-row {
     display: flex;
     justify-content: space-between;
+    align-items: baseline;
     padding: 0.75rem 0;
     border-bottom: 1px solid var(--border-color);
+    gap: 1rem;
 }
 
 .profile-row:last-child {
@@ -429,10 +472,15 @@ body {
 .profile-row .label {
     font-weight: 600;
     color: var(--secondary-color);
+    min-width: 140px;
+    flex-shrink: 0;
 }
 
 .profile-row .value {
     color: var(--dark-text);
+    text-align: right;
+    flex: 1;
+    word-break: break-word;
 }
 
 /* ============================================
@@ -869,9 +917,51 @@ body.dark-mode .close-modal {
     }
 
     .sidebar {
+        width: 280px;
+        max-width: 85%;
+        position: fixed;
+        top: 60px;
+        left: 0;
+        height: calc(100vh - 60px);
+        z-index: 1001;
+        overflow-y: auto;
+        border-radius: 0;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+
+    .sidebar:not(.collapsed) {
+        transform: translateX(0);
+    }
+    
+    .sidebar * {
+        pointer-events: auto;
+    }
+
+    /* Overlay for mobile sidebar */
+    .container::before {
+        content: '';
+        position: fixed;
+        top: 60px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 1000;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.3s ease, visibility 0.3s ease;
+        pointer-events: none;
+    }
+
+    .container:has(.sidebar:not(.collapsed))::before {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+
+    .main-content {
         width: 100%;
-        position: relative;
-        top: 0;
     }
 
     .nav-items {
@@ -880,39 +970,62 @@ body.dark-mode .close-modal {
 
     .stats-grid {
         grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+    
+    .stat-card {
+        padding: 1.25rem;
     }
 
     .notes-list,
     .assignments-list,
     .classes-list {
         grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+    
+    .content-section h2 {
+        font-size: 1.5rem;
     }
 
     .profile-row {
-        flex-direction: column;
+        align-items: baseline;
+        gap: 0.5rem;
     }
 
     .profile-row .label {
-        margin-bottom: 0.5rem;
+        min-width: 100px;
+        flex-shrink: 0;
+    }
+    
+    .profile-row .value {
+        text-align: right;
+        flex: 1;
     }
 }
 
 @media (max-width: 480px) {
-    .nav-title {
-        font-size: 1.4rem;
-    }
-
-    .nav-items {
-        gap: 0.5rem;
-    }
-
-    .nav-btn {
-        padding: 0.4rem 0.8rem;
-        font-size: 0.9rem;
+    .container {
+        padding: 1rem;
+        gap: 1rem;
     }
 
     .stats-grid {
         grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+    
+    .stat-card {
+        padding: 1rem;
+    }
+    
+    .stat-value {
+        font-size: 1.75rem;
+    }
+    
+    .content-section h2 {
+        font-size: 1.25rem;
+        padding-bottom: 0.75rem;
     }
 
     .sidebar-menu {
@@ -922,6 +1035,22 @@ body.dark-mode .close-modal {
     .menu-item {
         padding: 0.75rem 1rem;
         font-size: 0.9rem;
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 0.6rem;
+        font-size: 0.95rem;
+    }
+    
+    .btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.95rem;
+    }
+    
+    .profile-card {
+        padding: 1rem;
     }
 }
 
@@ -1429,20 +1558,7 @@ body .sidebar {
         display: none;
     }
     
-    .sidebar {
-        position: fixed;
-        left: 0;
-        top: 85px;
-        height: calc(100vh - 85px);
-        z-index: 99;
-        border-radius: 0;
-        transform: translateX(-100%);
-        transition: transform 0.3s ease;
-    }
-    
-    .sidebar.show {
-        transform: translateX(0);
-    }
+    /* Sidebar mobile styles handled in main responsive section */
     
     .sidebar.collapsed {
         transform: translateX(-100%);
@@ -1801,3 +1917,636 @@ body .sidebar {
 #detailModal.show {
     display: flex !important;
 }
+/* ============================================
+   CR PANEL STYLES
+   ============================================ */
+#crPanel {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+}
+
+#crPanel h2 {
+    color: white;
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+}
+
+.cr-section {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+}
+
+.cr-section h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.proxy-request-card {
+    background: var(--light-bg);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    border-left: 4px solid var(--warning-color);
+}
+
+.request-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.request-header strong {
+    color: var(--dark-text);
+    font-size: 1.1rem;
+}
+
+.request-date {
+    color: var(--secondary-color);
+    font-size: 0.9rem;
+}
+
+.proxy-request-card p {
+    margin: 0.5rem 0;
+    color: var(--dark-text);
+}
+
+.request-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.btn-success {
+    background: var(--success-color);
+    color: white;
+}
+
+.btn-success:hover {
+    background: #218838;
+}
+
+.btn-danger {
+    background: var(--danger-color);
+    color: white;
+}
+
+.btn-danger:hover {
+    background: #c82333;
+}
+
+.btn-small {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+}
+
+/* Dark Mode for CR Panel */
+body.dark-mode #crPanel {
+    background: linear-gradient(135deg, #434343 0%, #000000 100%);
+}
+
+body.dark-mode .cr-section {
+    background: #2a2a2a;
+}
+
+body.dark-mode .proxy-request-card {
+    background: #1a1a1a;
+    border-left-color: var(--warning-color);
+}
+
+body.dark-mode .request-header strong,
+body.dark-mode .proxy-request-card p {
+    color: #e0e0e0;
+}/* ============================================
+   CR TOOLS SECTION STYLES
+   ============================================ */
+#crtools h2 {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 1.5rem;
+    margin: -2rem -2rem 2rem -2rem;
+    border-radius: 10px 10px 0 0;
+}
+
+body.dark-mode #crtools h2 {
+    background: linear-gradient(135deg, #434343 0%, #000000 100%);
+}
+
+.cr-section > p {
+    margin-bottom: 1rem;
+}
+
+.cr-section {
+    background: var(--light-bg);
+    border: 2px solid var(--border-color);
+}
+
+.proxy-request-card {
+    background: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+body.dark-mode .cr-section {
+    background: #2a2a2a;
+    border-color: #444;
+}
+
+body.dark-mode .proxy-request-card {
+    background: #333;
+}
+
+@media (max-width: 768px) {
+    .request-actions {
+        flex-direction: column;
+    }
+    
+    .request-actions button {
+        width: 100%;
+    }
+}
+
+/* ============================================
+   ENHANCED RESPONSIVE DESIGN
+   ============================================ */
+
+/* Tablet breakpoint (481px - 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.25rem;
+    }
+    
+    .container {
+        padding: 1.5rem;
+    }
+    
+    .content-section {
+        padding: 1.5rem;
+    }
+    
+    .profile-details {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Better touch targets for mobile */
+@media (max-width: 768px) {
+    .menu-item {
+        min-height: 48px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .nav-btn {
+        min-width: 44px;
+        min-height: 44px;
+    }
+    
+    .btn {
+        min-height: 44px;
+    }
+}
+
+/* Extra small devices */
+@media (max-width: 380px) {
+    .navbar {
+        padding: 0.6rem 0.4rem;
+    }
+    
+    .nav-logo {
+        height: 28px;
+        width: 28px;
+    }
+    
+    .nav-btn {
+        width: 28px;
+        height: 28px;
+        font-size: 12px;
+    }
+    
+    .stats-grid {
+        gap: 0.5rem;
+    }
+    
+    .stat-card {
+        padding: 0.75rem;
+    }
+    
+    .stat-value {
+        font-size: 1.5rem;
+    }
+}
+
+/* Landscape mode fixes */
+@media (max-height: 500px) and (orientation: landscape) {
+    .sidebar {
+        height: auto;
+        max-height: calc(100vh - 60px);
+    }
+    
+    .navbar {
+        position: sticky;
+    }
+}
+
+/* Print styles */
+@media print {
+    .navbar,
+    .sidebar,
+    .nav-btn {
+        display: none;
+    }
+    
+    .main-content {
+        width: 100%;
+    }
+    
+    .content-section {
+        box-shadow: none;
+        page-break-inside: avoid;
+    }
+}
+
+
+/* ============================================
+   IMPROVED CONTAINER & SPACING
+   ============================================ */
+
+/* Better container responsiveness */
+@media (max-width: 768px) {
+    .container {
+        padding: 1rem !important;
+        gap: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 0.75rem !important;
+    }
+    
+    .content-section {
+        padding: 1rem !important;
+        margin-bottom: 0.75rem;
+    }
+    
+    .content-section h2 {
+        font-size: 1.25rem !important;
+        margin-bottom: 1rem;
+    }
+    
+    .stat-card h3 {
+        font-size: 0.9rem;
+    }
+    
+    .stat-value {
+        font-size: 1.5rem !important;
+    }
+}
+
+/* Better form responsiveness */
+@media (max-width: 480px) {
+    .form-group {
+        margin-bottom: 1rem;
+    }
+    
+    .form-group label {
+        font-size: 0.9rem;
+        margin-bottom: 0.4rem;
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 0.6rem;
+        font-size: 0.95rem;
+    }
+    
+    .btn {
+        padding: 0.65rem 1.2rem;
+        font-size: 0.95rem;
+    }
+}
+
+/* Profile section responsive */
+@media (max-width: 480px) {
+    .profile-card {
+        padding: 1rem;
+    }
+    
+    .profile-avatar {
+        width: 60px;
+        height: 60px;
+        font-size: 1.5rem;
+    }
+    
+    .profile-info h3 {
+        font-size: 1.1rem;
+    }
+    
+    .profile-row {
+        padding: 0.5rem 0;
+    }
+    
+    .profile-row .label {
+        font-size: 0.85rem;
+    }
+    
+    .profile-row .value {
+        font-size: 0.9rem;
+    }
+}
+
+/* CR Tools responsive improvements */
+@media (max-width: 480px) {
+    #crtools h2 {
+        padding: 1rem;
+        margin: -1rem -1rem 1.5rem -1rem;
+        font-size: 1.1rem;
+    }
+    
+    .cr-section {
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    .cr-section h3 {
+        font-size: 1rem;
+    }
+    
+    .proxy-request-card {
+        padding: 0.75rem;
+    }
+    
+    .request-header strong {
+        font-size: 0.95rem;
+    }
+    
+    .request-date {
+        font-size: 0.8rem;
+    }
+}
+
+
+/* ============================================
+   PERFORMANCE & UX IMPROVEMENTS
+   ============================================ */
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Better image loading */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Prevent zoom on input focus (iOS) */
+@media (max-width: 768px) {
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="tel"],
+    textarea,
+    select {
+        font-size: 16px !important;
+    }
+}
+
+/* Remove tap highlight on mobile */
+* {
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Better focus states for accessibility */
+a:focus,
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* Smooth transitions for theme toggle */
+body,
+.navbar,
+.sidebar,
+.content-section,
+.stat-card,
+.menu-item {
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Optimize animations for mobile */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Safe area insets for notched devices */
+@supports (padding: max(0px)) {
+    .container {
+        padding-left: max(1rem, env(safe-area-inset-left));
+        padding-right: max(1rem, env(safe-area-inset-right));
+        padding-bottom: max(1rem, env(safe-area-inset-bottom));
+    }
+}
+
+/* Prevent horizontal scroll */
+body {
+    overflow-x: hidden;
+}
+
+.container {
+    overflow-x: hidden;
+}
+
+
+/* ============================================
+   MOBILE MENU FIX - ENSURE CLICKABILITY
+   ============================================ */
+
+@media (max-width: 768px) {
+    .sidebar-menu {
+        position: relative;
+        z-index: 1002;
+    }
+    
+    .menu-item {
+        cursor: pointer;
+        user-select: none;
+        -webkit-user-select: none;
+        -webkit-touch-callout: none;
+        position: relative;
+        z-index: 1003;
+    }
+    
+    .menu-item:active {
+        background: var(--light-bg);
+        border-left-color: var(--primary-color);
+    }
+}
+
+/* Ensure sidebar content is above overlay */
+.sidebar {
+    isolation: isolate;
+}
+
+.sidebar * {
+    position: relative;
+}
+
+
+/* ============================================
+   FINAL MOBILE MENU FIX - FORCE CLICKABILITY
+   ============================================ */
+
+@media (max-width: 768px) {
+    .sidebar {
+        width: 280px !important;
+        max-width: 85% !important;
+        position: fixed !important;
+        top: 60px !important;
+        left: 0 !important;
+        height: calc(100vh - 60px) !important;
+        z-index: 1001 !important;
+        overflow-y: auto !important;
+        border-radius: 0 !important;
+        transform: translateX(-100%) !important;
+        transition: transform 0.3s ease !important;
+        box-shadow: 2px 0 10px rgba(0,0,0,0.3) !important;
+    }
+
+    .sidebar:not(.collapsed) {
+        transform: translateX(0) !important;
+    }
+    
+    .sidebar-menu,
+    .sidebar-menu li,
+    .sidebar-menu li a {
+        pointer-events: auto !important;
+        touch-action: manipulation !important;
+    }
+    
+    .menu-item {
+        display: block !important;
+        pointer-events: auto !important;
+        cursor: pointer !important;
+        min-height: 48px !important;
+        padding: 14px 20px !important;
+        touch-action: manipulation !important;
+        -webkit-tap-highlight-color: rgba(0,0,0,0.1) !important;
+    }
+}
+
+
+/* ============================================
+   DARK MODE - FORCE WHITE BACKGROUNDS TO DARK
+   ============================================ */
+
+body.dark-mode .main-content {
+    background: transparent !important;
+}
+
+body.dark-mode .content-section {
+    background: #1e1e1e !important;
+    color: #e6e6e6 !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5) !important;
+}
+
+body.dark-mode .content-section * {
+    color: #e6e6e6 !important;
+}
+
+body.dark-mode .content-section h2,
+body.dark-mode .content-section h3,
+body.dark-mode .content-section h4 {
+    color: #f0f0f0 !important;
+    border-bottom-color: #444 !important;
+}
+
+body.dark-mode .stat-card {
+    background: #2a2a2a !important;
+    border: 1px solid #444 !important;
+    color: #e6e6e6 !important;
+}
+
+body.dark-mode .stat-card * {
+    color: #e6e6e6 !important;
+}
+
+body.dark-mode .profile-card {
+    background: #2a2a2a !important;
+    border: 1px solid #444 !important;
+}
+
+body.dark-mode .profile-card * {
+    color: #e6e6e6 !important;
+}
+
+body.dark-mode .form-group input,
+body.dark-mode .form-group select,
+body.dark-mode .form-group textarea {
+    background: #2a2a2a !important;
+    border: 1px solid #444 !important;
+    color: #e6e6e6 !important;
+}
+
+body.dark-mode .timetable {
+    background: #2a2a2a !important;
+}
+
+body.dark-mode .timetable th,
+body.dark-mode .timetable td {
+    background: #2a2a2a !important;
+    color: #e6e6e6 !important;
+    border-color: #444 !important;
+}
+
+body.dark-mode .timetable thead {
+    background: #333 !important;
+}
+
+body.dark-mode .timetable tbody tr:hover {
+    background: #333 !important;
+}
+
+body.dark-mode .notification-card {
+    background: #2a2a2a !important;
+    border-left-color: var(--primary-color) !important;
+}
+
+body.dark-mode .notification-card * {
+    color: #e6e6e6 !important;
+}
+
+body.dark-mode .note-card,
+body.dark-mode .assignment-card,
+body.dark-mode .class-card {
+    background: #2a2a2a !important;
+    border: 1px solid #444 !important;
+}
+
+body.dark-mode .note-card *,
+body.dark-mode .assignment-card *,
+body.dark-mode .class-card * {
+    color: #e6e6e6 !important;
+}
+
+body.dark-mode .filter-controls select {
+    background: #2a2a2a !important;
+    border: 1px solid #444 !important;
+    color: #e6e6e6 !important;
+}
+

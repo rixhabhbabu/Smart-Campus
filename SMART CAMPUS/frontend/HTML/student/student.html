@@ -39,6 +39,7 @@
                 <li><a href="#notes" class="menu-item" data-section="notes">📚 Download Notes</a></li>
                 <li><a href="#assignments" class="menu-item" data-section="assignments">📝 Assignments</a></li>
                 <li><a href="#classes" class="menu-item" data-section="classes">🎥 Online Classes</a></li>
+                <li id="crMenuItem" style="display: none;"><a href="#crtools" class="menu-item" data-section="crtools">👑 CR Tools</a></li>
             </ul>
         </aside>
 
@@ -343,6 +344,104 @@
                         <p>Time: 10:00 AM - 11:00 AM</p>
                         <p>Teacher: Dr. Rajesh Kumar</p>
                         <button class="btn btn-primary btn-small">🎥 Join Class</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- CR TOOLS SECTION (Only visible for CRs) -->
+            <section id="crtools" class="content-section">
+                <h2>👑 CR Tools - Class Representative Panel</h2>
+                
+                <!-- Pending Proxy Requests -->
+                <div class="cr-section">
+                    <h3>🎫 Pending Proxy Requests</h3>
+                    <p style="color: var(--secondary-color); margin-bottom: 1rem;">Review and manage proxy attendance requests from your classmates</p>
+                    <div id="crProxyRequests" class="cr-proxy-list">
+                        <!-- Requests will be added here dynamically -->
+                        <div class="proxy-request-card">
+                            <div class="request-header">
+                                <strong>Rahul Verma</strong>
+                                <span class="request-date">Dec 25, 2024</span>
+                            </div>
+                            <p><strong>Subject:</strong> Data Structures</p>
+                            <p><strong>Reason:</strong> Medical emergency - Had to visit hospital</p>
+                            <div class="request-actions">
+                                <button class="btn btn-success btn-small" onclick="approveProxyRequest('REQ001')">✓ Approve</button>
+                                <button class="btn btn-danger btn-small" onclick="rejectProxyRequest('REQ001')">✗ Reject</button>
+                            </div>
+                        </div>
+                        <div class="proxy-request-card">
+                            <div class="request-header">
+                                <strong>Priya Sharma</strong>
+                                <span class="request-date">Dec 24, 2024</span>
+                            </div>
+                            <p><strong>Subject:</strong> Web Development</p>
+                            <p><strong>Reason:</strong> Family function - Prior approval from parents</p>
+                            <div class="request-actions">
+                                <button class="btn btn-success btn-small" onclick="approveProxyRequest('REQ002')">✓ Approve</button>
+                                <button class="btn btn-danger btn-small" onclick="rejectProxyRequest('REQ002')">✗ Reject</button>
+                            </div>
+                        </div>
+                        <div class="proxy-request-card">
+                            <div class="request-header">
+                                <strong>Amit Kumar</strong>
+                                <span class="request-date">Dec 23, 2024</span>
+                            </div>
+                            <p><strong>Subject:</strong> Database Management</p>
+                            <p><strong>Reason:</strong> Important college sports event participation</p>
+                            <div class="request-actions">
+                                <button class="btn btn-success btn-small" onclick="approveProxyRequest('REQ003')">✓ Approve</button>
+                                <button class="btn btn-danger btn-small" onclick="rejectProxyRequest('REQ003')">✗ Reject</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Send Announcement -->
+                <div class="cr-section">
+                    <h3>📢 Send Class Announcement</h3>
+                    <p style="color: var(--secondary-color); margin-bottom: 1rem;">Broadcast important messages to all students in your class</p>
+                    <form id="crAnnouncementForm" class="form-section">
+                        <div class="form-group">
+                            <label for="announcementTitle">Title:</label>
+                            <input type="text" id="announcementTitle" placeholder="e.g., Tomorrow's Class Cancelled" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="announcementMessage">Message:</label>
+                            <textarea id="announcementMessage" rows="5" placeholder="Type your announcement here..." required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="announcementPriority">Priority:</label>
+                            <select id="announcementPriority" required>
+                                <option value="normal">📝 Normal</option>
+                                <option value="important">⚠️ Important</option>
+                                <option value="urgent">🚨 Urgent</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">📢 Send Announcement</button>
+                    </form>
+                </div>
+
+                <!-- Class Statistics -->
+                <div class="cr-section">
+                    <h3>📊 Class Statistics</h3>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <h4>👥 Total Students</h4>
+                            <p class="stat-value">45</p>
+                        </div>
+                        <div class="stat-card">
+                            <h4>✅ Average Attendance</h4>
+                            <p class="stat-value">82%</p>
+                        </div>
+                        <div class="stat-card">
+                            <h4>🎫 Pending Requests</h4>
+                            <p class="stat-value">3</p>
+                        </div>
+                        <div class="stat-card">
+                            <h4>📢 Announcements Sent</h4>
+                            <p class="stat-value">12</p>
+                        </div>
                     </div>
                 </div>
             </section>

@@ -7,7 +7,16 @@ function toggleSidebar() {
     const sidebar = document.querySelector('.sidebar');
     const container = document.querySelector('.container');
     sidebar.classList.toggle('collapsed');
-    container.classList.toggle('sidebar-collapsed');
+    
+    // On mobile, close sidebar when clicking a menu item
+    if (window.innerWidth <= 768) {
+        const menuItems = document.querySelectorAll('.menu-item');
+        menuItems.forEach(item => {
+            item.addEventListener('click', function() {
+                sidebar.classList.add('collapsed');
+            });
+        });
+    }
     
     // Update toggle button icon
     const toggleBtn = document.getElementById('sidebarToggle');
@@ -17,6 +26,93 @@ function toggleSidebar() {
         toggleBtn.textContent = '✕';
     }
 }
+
+// Close sidebar when clicking outside on mobile
+document.addEventListener('click', function(event) {
+    if (window.innerWidth <= 768) {
+        const sidebar = document.querySelector('.sidebar');
+        const toggleBtn = document.getElementById('sidebarToggle');
+        const container = document.querySelector('.container');
+        
+        // Check if clicking on overlay (outside sidebar)
+        if (!sidebar.contains(event.target) && !toggleBtn.contains(event.target)) {
+            if (!sidebar.classList.contains('collapsed')) {
+                sidebar.classList.add('collapsed');
+                toggleBtn.textContent = '☰';
+            }
+        }
+    }
+}, { passive: true });
+
+// Close sidebar when clicking menu items on mobile
+document.addEventListener('DOMContentLoaded', function() {
+    if (window.innerWidth <= 768) {
+        const menuItems = document.querySelectorAll('.menu-item');
+        const sidebar = document.querySelector('.sidebar');
+        const toggleBtn = document.getElementById('sidebarToggle');
+        
+        menuItems.forEach(item => {
+            item.addEventListener('click', function() {
+                sidebar.classList.add('collapsed');
+                if (toggleBtn) {
+                    toggleBtn.textContent = '☰';
+                }
+            });
+        });
+    }
+});
+
+// Initialize sidebar as collapsed on mobile
+if (window.innerWidth <= 768) {
+    const sidebar = document.querySelector('.sidebar');
+    if (sidebar) {
+        sidebar.classList.add('collapsed');
+    }
+}
+
+// Handle window resize - reset sidebar state
+let resizeTimer;
+window.addEventListener('resize', function() {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function() {
+        const sidebar = document.querySelector('.sidebar');
+        if (window.innerWidth > 768) {
+            // Desktop - show sidebar
+            sidebar.classList.remove('collapsed');
+        } else {
+            // Mobile - collapse sidebar
+            sidebar.classList.add('collapsed');
+        }
+        
+        // Update toggle button
+        const toggleBtn = document.getElementById('sidebarToggle');
+        if (sidebar.classList.contains('collapsed')) {
+            toggleBtn.textContent = '☰';
+        } else {
+            toggleBtn.textContent = '✕';
+        }
+    }, 250);
+});
+
+// Handle orientation change
+window.addEventListener('orientationchange', function() {
+    setTimeout(function() {
+        if (window.innerWidth <= 768) {
+            const sidebar = document.querySelector('.sidebar');
+            sidebar.classList.add('collapsed');
+        }
+    }, 300);
+});
+
+// Prevent accidental zoom on double tap (iOS)
+let lastTouchEnd = 0;
+document.addEventListener('touchend', function(event) {
+    const now = Date.now();
+    if (now - lastTouchEnd <= 300) {
+        event.preventDefault();
+    }
+    lastTouchEnd = now;
+}, { passive: false });
 
 // Expose globally
 window.toggleSidebar = toggleSidebar;
@@ -96,6 +192,9 @@ const dummyNotifications = [
 // PAGE INITIALIZATION
 document.addEventListener("DOMContentLoaded", function() {
     console.log("DOMContentLoaded - Initializing Student Dashboard");
+    
+    // Check if user is CR and show CR Panel
+    checkAndShowCRPanel();
     
     // Theme handled by theme.js — only sync toggle icon here
     const savedTheme = localStorage.getItem("theme");
@@ -317,4 +416,76 @@ function logoutStudent() {
     }
     window.location.href = "../login.html";
     return false;
+}
+// ============================================
+// CR PANEL FUNCTIONS
+// ============================================
+
+// Check if user is CR and show panel
+function checkAndShowCRPanel() {
+    const isCR = localStorage.getItem("sc_isCR");
+    console.log("Checking CR status:", isCR);
+    
+    if (isCR === "true") {
+        // Show CR Tools menu item in sidebar
+        const crMenuItem = document.getElementById("crMenuItem");
+        if (crMenuItem) {
+            crMenuItem.style.display = "block";
+            console.log("CR Tools menu item shown");
+        }
+        
+        // Update profile role to show CR badge
+        const profileRole = document.getElementById("profileRole");
+        if (profileRole) {
+            profileRole.innerHTML = "👑 Class Representative";
+        }
+    } else {
+        console.log("Not a CR - Menu item remains hidden");
+    }
+}
+
+// Make functions globally available
+window.checkAndShowCRPanel = checkAndShowCRPanel;
+
+// Approve Proxy Request
+function approveProxyRequest(requestId) {
+    alert(`✅ Proxy request ${requestId} approved successfully!`);
+    // In real app, this would send to backend
+    // Remove the card after approval
+    event.target.closest('.proxy-request-card').remove();
+}
+window.approveProxyRequest = approveProxyRequest;
+
+// Reject Proxy Request
+function rejectProxyRequest(requestId) {
+    const reason = prompt("Enter rejection reason (optional):");
+    alert(`❌ Proxy request ${requestId} rejected.`);
+    // In real app, this would send to backend
+    // Remove the card after rejection
+    event.target.closest('.proxy-request-card').remove();
+}
+window.rejectProxyRequest = rejectProxyRequest;
+
+// Handle CR Announcement Form
+const crAnnouncementFormInit = () => {
+    const crAnnouncementForm = document.getElementById("crAnnouncementForm");
+    if (crAnnouncementForm) {
+        crAnnouncementForm.addEventListener("submit", function(e) {
+            e.preventDefault();
+            const title = document.getElementById("announcementTitle").value;
+            const message = document.getElementById("announcementMessage").value;
+            
+            alert(`📢 Announcement sent to entire class!\n\nTitle: ${title}\nMessage: ${message}`);
+            
+            // Clear form
+            e.target.reset();
+        });
+    }
+};
+
+// Initialize CR announcement form when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', crAnnouncementFormInit);
+} else {
+    crAnnouncementFormInit();
 }
