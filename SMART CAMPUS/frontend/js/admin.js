@@ -343,15 +343,22 @@ function loadGlobalIssues() {
 // ============================================
 function setupEventListeners() {
     // Theme toggle
-    document.getElementById("themeToggle").addEventListener("click", function() {
-        document.body.classList.toggle("dark-mode");
-        localStorage.setItem("theme", document.body.classList.contains("dark-mode") ? "dark" : "light");
-    });
+    const themeBtn = document.getElementById("themeToggle");
+    if (themeBtn) {
+        themeBtn.addEventListener("click", function() {
+            if (typeof window.toggleTheme === "function") {
+                window.toggleTheme();
+            } else {
+                document.body.classList.toggle("dark-mode");
+                localStorage.setItem("theme", document.body.classList.contains("dark-mode") ? "dark" : "light");
+            }
+        });
+    }
 
     // Logout button
     document.getElementById("logoutBtn").addEventListener("click", function() {
         alert("Logged out successfully!");
-        window.location.href = "login.html";
+        window.location.href = "../login.html";
     });
 
     // Proxy status filter

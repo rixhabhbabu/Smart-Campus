@@ -802,3 +802,19 @@ body.dark-mode .success-message {
         font-size: 2rem;
     }
 }
+
+/* ============================================
+   LIGHT MODE EXPLICIT STYLES
+   ============================================ */
+body {
+    background-color: #f8f9fa;
+    color: #212529;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body .card,
+body .sidebar,
+body .main-content {
+    background: white;
+    color: #212529;
+}

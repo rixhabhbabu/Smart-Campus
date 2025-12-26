@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Student Dashboard - Smart Campus</title>
+    <link rel="stylesheet" href="../../css/theme.css">
+    <link rel="stylesheet" href="../../css/student/student.css">
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <button class="nav-btn" id="sidebarToggle" onclick="toggleSidebar()">☰</button>
+            <img src="../../assets/images/logo.png" alt="Logo" class="nav-logo">
+            <span class="nav-title">Smart Campus</span>
+        </div>
+        <div class="nav-right">
+            <button class="nav-btn" id="themeToggle">🌙</button>
+            <button class="nav-btn" id="logoutBtn">🚪</button>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTAINER -->
+    <div class="container">
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <ul class="sidebar-menu">
+                <li><a href="#profile" class="menu-item" data-section="profile">👤 My Profile</a></li>
+                <li><a href="#dashboard" class="menu-item active" data-section="dashboard">📊 Dashboard</a></li>
+                <li><a href="#notifications" class="menu-item" data-section="notifications">🔔 Notifications</a></li>
+                <li><a href="#attendance" class="menu-item" data-section="attendance">✅ Attendance</a></li>
+                <li><a href="#proxy" class="menu-item" data-section="proxy">🎫 Proxy Request</a></li>
+                <li><a href="#issues" class="menu-item" data-section="issues">⚠️ Raise Issue</a></li>
+                <li><a href="#results" class="menu-item" data-section="results">📜 Results</a></li>
+                <li><a href="#feedback" class="menu-item" data-section="feedback">📝 Feedback</a></li>
+                <li><a href="#notes" class="menu-item" data-section="notes">📚 Download Notes</a></li>
+                <li><a href="#assignments" class="menu-item" data-section="assignments">📝 Assignments</a></li>
+                <li><a href="#classes" class="menu-item" data-section="classes">🎥 Online Classes</a></li>
+            </ul>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+            <!-- PROFILE SECTION -->
+            <section id="profile" class="content-section">
+                <h2>👤 My Profile</h2>
+                <div class="profile-card">
+                    <div class="profile-header">
+                        <div class="profile-avatar">👤</div>
+                        <div class="profile-info">
+                            <h3 id="profileName">Akhil Sharma</h3>
+                            <p id="profileRole" style="color: var(--secondary-color);">Student</p>
+                        </div>
+                    </div>
+                    <div class="profile-details">
+                        <div class="profile-section">
+                            <h4>Personal Information</h4>
+                            <div class="profile-row">
+                                <span class="label">Name:</span>
+                                <span class="value" id="detailName">Akhil Sharma</span>
+                            </div>
+                            <div class="profile-row">
+                                <span class="label">Email:</span>
+                                <span class="value" id="detailEmail">akhil.sharma@college.edu</span>
+                            </div>
+                            <div class="profile-row">
+                                <span class="label">Mobile:</span>
+                                <span class="value" id="detailMobile">+91 9876543210</span>
+                            </div>
+                            <div class="profile-row">
+                                <span class="label">Date of Birth:</span>
+                                <span class="value">15-03-2003</span>
+                            </div>
+                        </div>
+                        <div class="profile-section">
+                            <h4>Academic Information</h4>
+                            <div class="profile-row">
+                                <span class="label">Enrollment No:</span>
+                                <span class="value" id="detailEnrollment">STU103054</span>
+                            </div>
+                            <div class="profile-row">
+                                <span class="label">Roll Number:</span>
+                                <span class="value">103054</span>
+                            </div>
+                            <div class="profile-row">
+                                <span class="label">Branch:</span>
+                                <span class="value">Computer Science & Engineering</span>
+                            </div>
+                            <div class="profile-row">
+                                <span class="label">Semester:</span>
+                                <span class="value" id="detailSemester">5th</span>
+                            </div>
+                            <div class="profile-row">
+                                <span class="label">Division:</span>
+                                <span class="value">3A</span>
+                            </div>
+                        </div>
+                        <div class="profile-section">
+                            <h4>Contact Information</h4>
+                            <div class="profile-row">
+                                <span class="label">College Email:</span>
+                                <span class="value">akhil.sharma@college.edu</span>
+                            </div>
+                            <div class="profile-row">
+                                <span class="label">Personal Email:</span>
+                                <span class="value">akhil.sharma@gmail.com</span>
+                            </div>
+                            <div class="profile-row">
+                                <span class="label">Address:</span>
+                                <span class="value">123 Main Street, City, State 12345</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- DASHBOARD SECTION -->
+            <section id="dashboard" class="content-section active">
+                <h2>📊 Dashboard Overview</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>✅ Attendance</h3>
+                        <p class="stat-value" id="dashAttendance">85%</p>
+                        <p style="color: var(--secondary-color); font-size: 0.9rem;">Classes present</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>📚 Total Subjects</h3>
+                        <p class="stat-value" id="dashSubjects">7</p>
+                        <p style="color: var(--secondary-color); font-size: 0.9rem;">Enrolled subjects</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>📝 Pending Assignments</h3>
+                        <p class="stat-value" id="dashAssignments">3</p>
+                        <p style="color: var(--secondary-color); font-size: 0.9rem;">To be submitted</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>📊 Current GPA</h3>
+                        <p class="stat-value" id="dashGPA">3.8</p>
+                        <p style="color: var(--secondary-color); font-size: 0.9rem;">Out of 4.0</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- NOTIFICATIONS SECTION -->
+            <section id="notifications" class="content-section">
+                <h2>🔔 Notifications</h2>
+                <div id="notificationsContainer" class="notifications-list">
+                    <!-- Notifications will be loaded from JS -->
+                </div>
+            </section>
+
+            <!-- ATTENDANCE SECTION -->
+            <section id="attendance" class="content-section">
+                <h2>✅ Attendance Record</h2>
+                <div class="filter-controls">
+                    <select id="attendanceFilterSubject">
+                        <option value="">All Subjects</option>
+                    </select>
+                </div>
+                <table class="timetable">
+                    <thead>
+                        <tr>
+                            <th>Subject</th>
+                            <th>Present</th>
+                            <th>Absent</th>
+                            <th>Percentage</th>
+                        </tr>
+                    </thead>
+                    <tbody id="attendanceTable">
+                        <tr>
+                            <td>Data Structures</td>
+                            <td>32</td>
+                            <td>3</td>
+                            <td>91.4%</td>
+                        </tr>
+                        <tr>
+                            <td>Web Development</td>
+                            <td>28</td>
+                            <td>5</td>
+                            <td>84.8%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- PROXY REQUEST SECTION -->
+            <section id="proxy" class="content-section">
+                <h2>🎫 Request Proxy Attendance</h2>
+                <form id="proxyForm" class="form-section">
+                    <div class="form-group">
+                        <label for="proxyDate">Date:</label>
+                        <input type="date" id="proxyDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="proxySubject">Subject:</label>
+                        <select id="proxySubject" required>
+                            <option value="">Select Subject</option>
+                            <option value="Data Structures">Data Structures</option>
+                            <option value="Web Development">Web Development</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="proxyReason">Reason:</label>
+                        <textarea id="proxyReason" rows="4" placeholder="Enter reason for proxy..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit Request</button>
+                </form>
+            </section>
+
+            <!-- ISSUES SECTION -->
+            <section id="issues" class="content-section">
+                <h2>⚠️ Raise Issue</h2>
+                <form id="issueForm" class="form-section">
+                    <div class="form-group">
+                        <label for="issueCategory">Category:</label>
+                        <select id="issueCategory" required>
+                            <option value="">Select Category</option>
+                            <option value="Academic">Academic</option>
+                            <option value="Attendance">Attendance</option>
+                            <option value="Technical">Technical</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="issuePriority">Priority:</label>
+                        <select id="issuePriority" required>
+                            <option value="">Select Priority</option>
+                            <option value="High">High</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Low">Low</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="issueTitle">Title:</label>
+                        <input type="text" id="issueTitle" placeholder="Brief title of the issue" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="issueDescription">Description:</label>
+                        <textarea id="issueDescription" rows="5" placeholder="Describe the issue in detail" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Raise Issue</button>
+                </form>
+            </section>
+
+            <!-- RESULTS SECTION -->
+            <section id="results" class="content-section">
+                <h2>📜 Semester Results</h2>
+                <table class="timetable">
+                    <thead>
+                        <tr>
+                            <th>Subject</th>
+                            <th>Marks</th>
+                            <th>Grade</th>
+                        </tr>
+                    </thead>
+                    <tbody id="resultsTable">
+                        <tr>
+                            <td>Data Structures</td>
+                            <td>92/100</td>
+                            <td>A+</td>
+                        </tr>
+                        <tr>
+                            <td>Web Development</td>
+                            <td>88/100</td>
+                            <td>A</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- FEEDBACK SECTION -->
+            <section id="feedback" class="content-section">
+                <h2>📝 Send Feedback</h2>
+                <form id="feedbackForm" class="form-section">
+                    <div class="form-group">
+                        <label for="feedbackSubject">Subject:</label>
+                        <select id="feedbackSubject" required>
+                            <option value="">Select Subject</option>
+                            <option value="Data Structures">Data Structures</option>
+                            <option value="Web Development">Web Development</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="feedbackRating">Rating:</label>
+                        <select id="feedbackRating" required>
+                            <option value="">Select Rating</option>
+                            <option value="5">⭐⭐⭐⭐⭐ Excellent</option>
+                            <option value="4">⭐⭐⭐⭐ Good</option>
+                            <option value="3">⭐⭐⭐ Average</option>
+                            <option value="2">⭐⭐ Poor</option>
+                            <option value="1">⭐ Very Poor</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="feedbackMessage">Your Feedback:</label>
+                        <textarea id="feedbackMessage" rows="5" placeholder="Share your feedback..." required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit Feedback</button>
+                </form>
+            </section>
+
+            <!-- DOWNLOAD NOTES SECTION -->
+            <section id="notes" class="content-section">
+                <h2>📚 Download Notes</h2>
+                <div class="filter-controls">
+                    <select id="notesFilterSubject">
+                        <option value="">All Subjects</option>
+                    </select>
+                </div>
+                <div id="notesContainer" class="notes-list">
+                    <div class="note-card">
+                        <h4>Chapter 1 - Arrays and Lists</h4>
+                        <p>Subject: Data Structures</p>
+                        <p>Size: 2.5 MB | Type: PDF</p>
+                        <button class="btn btn-primary btn-small">📥 Download</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ASSIGNMENTS SECTION -->
+            <section id="assignments" class="content-section">
+                <h2>📝 Assignments</h2>
+                <div id="assignmentsContainer" class="assignments-list">
+                    <div class="assignment-card">
+                        <h4>Assignment 1 - Basic Programs</h4>
+                        <p>Subject: Data Structures</p>
+                        <p>Due: 2024-12-30</p>
+                        <p>Status: Pending Submission</p>
+                        <button class="btn btn-primary btn-small">Submit Assignment</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ONLINE CLASSES SECTION -->
+            <section id="classes" class="content-section">
+                <h2>🎥 Online Classes</h2>
+                <div id="classesContainer" class="classes-list">
+                    <div class="class-card">
+                        <h4>Data Structures - Class 1</h4>
+                        <p>Time: 10:00 AM - 11:00 AM</p>
+                        <p>Teacher: Dr. Rajesh Kumar</p>
+                        <button class="btn btn-primary btn-small">🎥 Join Class</button>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- MODAL -->
+    <div id="detailModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../js/theme.js"></script>
+    <script src="../../js/student.js"></script>
+</body>
+</html>

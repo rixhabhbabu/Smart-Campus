@@ -4,18 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard - Smart Campus</title>
-    <link rel="stylesheet" href="../css/admin.css">
-    <link rel="stylesheet" href="../css/theme.css">
+    <link rel="stylesheet" href="../../css/admin/admin.css">
+    <link rel="stylesheet" href="../../css/theme.css">
 </head>
 <body>
     <!-- Navbar -->
     <nav class="navbar">
         <div class="nav-container">
-            <h1 class="nav-title">🏫 Smart Campus</h1>
+            <div class="nav-logo-container">
+                <img src="../../assets/images/logo.png" alt="Smart Campus Logo" class="nav-logo">
+                <h1 class="nav-title">Smart Campus</h1>
+            </div>
             <div class="nav-items">
                 <span class="nav-user">👨‍💼 <span id="adminName">Admin</span></span>
                 <span class="nav-role">👑 Admin</span>
-                <button class="nav-btn" id="themeToggle">🌙</button>
+                <button type="button" class="nav-btn" id="themeToggle">🌙</button>
                 <button class="nav-btn" id="logoutBtn">🚪</button>
             </div>
         </div>
@@ -229,7 +232,7 @@
     </div>
 
     <!-- Scripts -->
-    <script src="../js/theme.js"></script>
-    <script src="../js/admin.js"></script>
+    <script src="../../js/theme.js"></script>
+    <script src="../../js/admin.js"></script>
 </body>
 </html>

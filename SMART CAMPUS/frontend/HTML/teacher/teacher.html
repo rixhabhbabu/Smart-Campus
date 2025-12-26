@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>Teacher Dashboard - Smart Campus</title>
+    <link rel="stylesheet" href="../../css/theme.css">
+    <link rel="stylesheet" href="../../css/teacher/teacher.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <button class="nav-btn" id="sidebarToggle" onclick="toggleSidebar()">☰</button>
+            <img src="../../assets/images/logo.png" alt="Logo" class="nav-logo">
+            <span class="nav-title">Smart Campus</span>
+        </div>
+        <div class="nav-right">
+            <button class="nav-btn" id="themeToggle">🌙</button>
+            <button class="nav-btn" id="logoutBtn" onclick="logoutTeacher()">🚪</button>
+        </div>
+    </nav>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <ul class="sidebar-menu">
+                <li><a href="#profile" class="menu-item" data-section="profile">👤 Profile</a></li>
+                <li><a href="#dashboard" class="menu-item active" data-section="dashboard">📊 Dashboard</a></li>
+                <li><a href="#my-attendance" class="menu-item" data-section="my-attendance">🎯 My Attendance</a></li>
+                <li><a href="#attendance" class="menu-item" data-section="attendance">✅ Mark Attendance</a></li>
+                <li><a href="#proxy" class="menu-item" data-section="proxy">📋 Proxy Approval</a></li>
+                <li><a href="#issues" class="menu-item" data-section="issues">⚠️ Student Issues</a></li>
+                <li><a href="#notifications" class="menu-item" data-section="notifications">📢 Notifications</a></li>
+                <li><a href="#students" class="menu-item" data-section="students">👥 Student List</a></li>
+                <li><a href="#timetable" class="menu-item" data-section="timetable">📅 Timetable</a></li>
+                <li><a href="#notes" class="menu-item" data-section="notes">📄 Notes</a></li>
+                <li><a href="#assignments" class="menu-item" data-section="assignments">📝 Assignments</a></li>
+                <li><a href="#classes" class="menu-item" data-section="classes">🎥 Online Classes</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <!-- 1️⃣ PROFILE SECTION -->
+            <section id="profile" class="content-section">
+                <h2>👤 Teacher Profile</h2>
+                <div class="profile-card">
+                    <div class="profile-header">
+                        <div class="profile-avatar">👨‍🏫</div>
+                        <div class="profile-info">
+                            <h3 id="profileName">Dr. Rajesh Kumar</h3>
+                            <p id="profileRole">Senior Lecturer - Computer Science</p>
+                        </div>
+                    </div>
+                    <div class="profile-details">
+                        <div class="profile-row">
+                            <span class="label">Employee ID:</span>
+                            <span class="value" id="profileEmployeeId">TCH001</span>
+                        </div>
+                        <div class="profile-row">
+                            <span class="label">Email:</span>
+                            <span class="value" id="profileEmail">rajesh.kumar@college.ac.in</span>
+                        </div>
+                        <div class="profile-row">
+                            <span class="label">Department:</span>
+                            <span class="value" id="profileDept">Computer Science</span>
+                        </div>
+                        <div class="profile-row">
+                            <span class="label">Subjects Assigned:</span>
+                            <span class="value" id="profileSubjects">Data Structures, Database Management, Web Development</span>
+                        </div>
+                        <div class="profile-row">
+                            <span class="label">Class Teacher of:</span>
+                            <span class="value" id="profileClass">3A</span>
+                        </div>
+                        <div class="profile-row">
+                            <span class="label">Semesters Assigned:</span>
+                            <span class="value" id="profileSemesters">3rd, 4th, 5th Semester</span>
+                        </div>
+                    </div>
+                    <button class="btn btn-secondary" onclick="editProfile()">✏️ Edit Profile (Future Scope)</button>
+                    <button type="button" class="btn btn-danger" id="profileLogoutBtn" onclick="logoutTeacher()">🚪 Logout</button>
+                </div>
+            </section>
+
+            <!-- 2️⃣ DASHBOARD OVERVIEW SECTION -->
+            <section id="dashboard" class="content-section active">
+                <h2>📊 Dashboard Overview</h2>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>📚 Total Classes Today</h3>
+                        <p class="stat-value" id="classesToday">3</p>
+                        <p style="color: var(--secondary-color); font-size: 0.9rem;">Next: Data Structures at 10:00 AM</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>📖 Assigned Subjects</h3>
+                        <p class="stat-value" id="totalSubjects">3</p>
+                        <p style="color: var(--secondary-color); font-size: 0.9rem;">Across 2 divisions</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>👥 Total Students</h3>
+                        <p class="stat-value" id="dashTotalStudents">45</p>
+                        <p style="color: var(--secondary-color); font-size: 0.9rem;">In assigned classes</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>⏳ Pending Proxies</h3>
+                        <p class="stat-value" id="dashPendingProxies">2</p>
+                        <p style="color: var(--secondary-color); font-size: 0.9rem;">Awaiting approval</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3️⃣ MY ATTENDANCE SECTION -->
+            <section id="my-attendance" class="content-section">
+                <h2>🎯 My Attendance Record</h2>
+
+                <!-- Attendance Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">📅</div>
+                        <div class="stat-content">
+                            <h4>Total Working Days</h4>
+                            <p class="stat-value" id="myTotalDays">22</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">✅</div>
+                        <div class="stat-content">
+                            <h4>Present</h4>
+                            <p class="stat-value present" id="myPresentDays">20</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">❌</div>
+                        <div class="stat-content">
+                            <h4>Absent</h4>
+                            <p class="stat-value absent" id="myAbsentDays">1</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon">🏖️</div>
+                        <div class="stat-content">
+                            <h4>On Leave</h4>
+                            <p class="stat-value leave" id="myLeaveDays">1</p>
+                        </div>
+                    </div>
+                    <div class="stat-card highlight">
+                        <div class="stat-icon">📊</div>
+                        <div class="stat-content">
+                            <h4>Attendance %</h4>
+                            <p class="stat-value" id="myAttendancePercentage">90.9%</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Month Filter -->
+                <div class="filter-section" style="margin: 2rem 0;">
+                    <label>Select Month:</label>
+                    <select id="myAttendanceMonthFilter" class="form-control" onchange="loadMyAttendance()">
+                        <option value="current">Current Month</option>
+                        <option value="last">Last Month</option>
+                        <option value="all">All Time</option>
+                    </select>
+                </div>
+
+                <!-- Attendance Calendar/History -->
+                <div class="attendance-history">
+                    <h3>📋 Attendance History</h3>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Day</th>
+                                <th>Status</th>
+                                <th>Marked By</th>
+                                <th>Remarks</th>
+                            </tr>
+                        </thead>
+                        <tbody id="myAttendanceHistoryBody">
+                            <!-- Loaded via JS -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Apply for Leave -->
+                <div class="leave-application" style="margin-top: 2rem;">
+                    <h3>📝 Apply for Leave</h3>
+                    <form id="leaveForm" class="form-grid">
+                        <div class="form-group">
+                            <label for="leaveFromDate">From Date:</label>
+                            <input type="date" id="leaveFromDate" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="leaveToDate">To Date:</label>
+                            <input type="date" id="leaveToDate" class="form-control" required>
+                        </div>
+                        <div class="form-group full-width">
+                            <label for="leaveReason">Reason:</label>
+                            <textarea id="leaveReason" class="form-control" rows="3" placeholder="Enter reason for leave..." required></textarea>
+                        </div>
+                        <div class="form-group full-width">
+                            <button type="button" class="btn btn-primary" onclick="submitLeaveRequest()">📤 Submit Leave Request</button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Leave Requests Status -->
+                <div class="leave-requests" style="margin-top: 2rem;">
+                    <h3>📋 My Leave Requests</h3>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>From Date</th>
+                                <th>To Date</th>
+                                <th>Days</th>
+                                <th>Reason</th>
+                                <th>Status</th>
+                                <th>Applied On</th>
+                            </tr>
+                        </thead>
+                        <tbody id="myLeaveRequestsBody">
+                            <!-- Loaded via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- 4️⃣ ATTENDANCE MANAGEMENT SECTION -->
+            <section id="attendance" class="content-section">
+                <h2>✅ Mark Attendance</h2>
+                <div class="attendance-form">
+                    <div class="form-group">
+                        <label for="attSubject">Select Subject:</label>
+                        <select id="attSubject">
+                            <option value="">-- Choose Subject --</option>
+                            <option value="Data Structures">Data Structures</option>
+                            <option value="Database Management">Database Management</option>
+                            <option value="Web Development">Web Development</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="attDivision">Select Division:</label>
+                        <select id="attDivision">
+                            <option value="">-- Choose Division --</option>
+                            <option value="3A">3A</option>
+                            <option value="3B">3B</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="attDate">Date:</label>
+                        <input type="date" id="attDate">
+                    </div>
+                    <button class="btn btn-primary" onclick="loadAttendanceList()">📋 Load Student List</button>
+                </div>
+
+                <div id="attendanceList" class="attendance-list" style="display: none;">
+                    <h3>Mark Attendance for Selected Class</h3>
+                    <div id="studentAttendanceList"></div>
+                    <div style="margin-top: 1.5rem; text-align: center;">
+                        <button class="btn btn-success" onclick="submitAttendance()">✅ Submit Attendance</button>
+                        <button class="btn btn-secondary" onclick="clearAttendance()">🔄 Clear</button>
+                    </div>
+                    <div id="attSuccess" class="success-message" style="display: none; margin-top: 1rem;">
+                        ✅ Attendance submitted successfully!
+                    </div>
+                </div>
+            </section>
+
+            <!-- 4️⃣ PROXY APPROVAL SECTION -->
+            <section id="proxy" class="content-section">
+                <h2>📋 Proxy Attendance Approval</h2>
+                <div class="filter-controls">
+                    <select id="proxyStatusFilter">
+                        <option value="">All Status</option>
+                        <option value="Pending">Pending</option>
+                        <option value="Approved">Approved</option>
+                        <option value="Rejected">Rejected</option>
+                    </select>
+                    <button class="btn btn-secondary" onclick="filterProxyRequests()">🔍 Filter</button>
+                </div>
+                <div id="proxyApprovalList" class="proxy-list"></div>
+            </section>
+
+            <!-- 5️⃣ ISSUE HANDLING SECTION -->
+            <section id="issues" class="content-section">
+                <h2>⚠️ Student Issues</h2>
+                <div class="filter-controls">
+                    <select id="issueCategoryFilter">
+                        <option value="">All Categories</option>
+                        <option value="Academic">Academic</option>
+                        <option value="Infrastructure">Infrastructure</option>
+                        <option value="Personal">Personal</option>
+                    </select>
+                    <select id="issueStatusFilter">
+                        <option value="">All Status</option>
+                        <option value="Pending">Pending</option>
+                        <option value="In Progress">In Progress</option>
+                        <option value="Forwarded to Admin">Forwarded to Admin</option>
+                        <option value="Resolved">Resolved</option>
+                    </select>
+                    <button class="btn btn-secondary" onclick="filterIssues()">🔍 Filter</button>
+                </div>
+                <div id="issuesList" class="issues-list"></div>
+            </section>
+
+            <!-- 6️⃣ NOTIFICATIONS SECTION -->
+            <section id="notifications" class="content-section">
+                <h2>📢 Notifications & Announcements</h2>
+                
+                <div class="notification-tabs">
+                    <button class="tab-btn active" onclick="switchTab('send-notification')">📤 Send Announcement</button>
+                    <button class="tab-btn" onclick="switchTab('received-notifications')">📥 Received</button>
+                </div>
+
+                <!-- Send Notification -->
+                <div id="send-notification" class="tab-content active">
+                    <form id="notificationForm" class="notification-form">
+                        <div class="form-group">
+                            <label for="notifTitle">Title:</label>
+                            <input type="text" id="notifTitle" placeholder="Notification title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="notifMessage">Message:</label>
+                            <textarea id="notifMessage" placeholder="Write your notification..." rows="4" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="notifTarget">Send To:</label>
+                            <select id="notifTarget" required>
+                                <option value="">-- Select --</option>
+                                <option value="AllStudents">All Students (Class 3A)</option>
+                                <option value="CROnly">Only CR (Class Representative)</option>
+                                <option value="Division3A">Division 3A Only</option>
+                                <option value="Division3B">Division 3B Only</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn btn-primary">📤 Send Notification</button>
+                    </form>
+                    <div id="notifSuccess" class="success-message" style="display: none;">
+                        ✅ Notification sent successfully!
+                    </div>
+                </div>
+
+                <!-- Received Notifications -->
+                <div id="received-notifications" class="tab-content">
+                    <h3>📥 Announcements from Admin & HOD</h3>
+                    <div id="receivedNotifList" class="notification-list"></div>
+                </div>
+            </section>
+
+            <!-- 7️⃣ STUDENT LIST & PERFORMANCE SECTION -->
+            <section id="students" class="content-section">
+                <h2>👥 Student List & Performance</h2>
+                
+                <!-- Search by Enrollment -->
+                <div class="search-section">
+                    <h3>🔍 Search Student by Enrollment Number</h3>
+                    <div class="search-box">
+                        <input type="text" id="searchEnrollment" placeholder="Enter Enrollment Number (e.g., STU103001)">
+                        <button class="btn btn-primary" onclick="searchStudentByEnrollment()">🔍 Search</button>
+                        <button class="btn btn-secondary" onclick="clearStudentSearch()">✖️ Clear</button>
+                    </div>
+                </div>
+
+                <!-- Student Detail Card (Hidden by default) -->
+                <div id="studentDetailCard" class="student-detail-card" style="display: none;">
+                    <div class="detail-header">
+                        <div class="student-avatar">👤</div>
+                        <div class="student-basic-info">
+                            <h3 id="detailStudentName">Student Name</h3>
+                            <p id="detailStudentEnrollment">Enrollment: STU103001</p>
+                            <span class="status-badge" id="detailStudentStatus">Active</span>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-sections">
+                        <!-- Personal Information -->
+                        <div class="detail-section">
+                            <h4>📋 Personal Information</h4>
+                            <div class="detail-grid">
+                                <div class="detail-item">
+                                    <span class="detail-label">Full Name:</span>
+                                    <span class="detail-value" id="detailFullName">-</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Date of Birth:</span>
+                                    <span class="detail-value" id="detailDOB">-</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Gender:</span>
+                                    <span class="detail-value" id="detailGender">-</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Blood Group:</span>
+                                    <span class="detail-value" id="detailBloodGroup">-</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Mobile:</span>
+                                    <span class="detail-value" id="detailMobile">-</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Email:</span>
+                                    <span class="detail-value" id="detailEmail">-</span>
+                                </div>
+                                <div class="detail-item full-width">
+                                    <span class="detail-label">Address:</span>
+                                    <span class="detail-value" id="detailAddress">-</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Academic Information -->
+                        <div class="detail-section">
+                            <h4>🎓 Academic Information</h4>
+                            <div class="detail-grid">
+                                <div class="detail-item">
+                                    <span class="detail-label">Roll Number:</span>
+                                    <span class="detail-value" id="detailRollNo">-</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Semester:</span>
+                                    <span class="detail-value" id="detailSemester">-</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Division:</span>
+                                    <span class="detail-value" id="detailDivision">-</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Branch:</span>
+                                    <span class="detail-value" id="detailBranch">-</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Admission Year:</span>
+                                    <span class="detail-value" id="detailAdmissionYear">-</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Current GPA:</span>
+                                    <span class="detail-value" id="detailGPA">-</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Attendance Information -->
+                        <div class="detail-section">
+                            <h4>📊 Attendance Information</h4>
+                            <div class="attendance-stats">
+                                <div class="attendance-stat">
+                                    <span class="stat-label">Overall Attendance</span>
+                                    <span class="stat-value" id="detailOverallAttendance">-</span>
+                                </div>
+                                <div class="attendance-stat">
+                                    <span class="stat-label">Classes Attended</span>
+                                    <span class="stat-value" id="detailClassesAttended">-</span>
+                                </div>
+                                <div class="attendance-stat">
+                                    <span class="stat-label">Classes Missed</span>
+                                    <span class="stat-value" id="detailClassesMissed">-</span>
+                                </div>
+                            </div>
+                            <div class="subject-attendance" id="subjectAttendanceList"></div>
+                        </div>
+
+                        <!-- Parent/Guardian Information -->
+                        <div class="detail-section">
+                            <h4>👨‍👩‍👧 Parent/Guardian Information</h4>
+                            <div class="detail-grid">
+                                <div class="detail-item">
+                                    <span class="detail-label">Father's Name:</span>
+                                    <span class="detail-value" id="detailFatherName">-</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Father's Occupation:</span>
+                                    <span class="detail-value" id="detailFatherOccupation">-</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Father's Mobile:</span>
+                                    <span class="detail-value" id="detailFatherMobile">-</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Mother's Name:</span>
+                                    <span class="detail-value" id="detailMotherName">-</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Mother's Occupation:</span>
+                                    <span class="detail-value" id="detailMotherOccupation">-</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Mother's Mobile:</span>
+                                    <span class="detail-value" id="detailMotherMobile">-</span>
+                                </div>
+                                <div class="detail-item">
+                                    <span class="detail-label">Guardian Email:</span>
+                                    <span class="detail-value" id="detailGuardianEmail">-</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="detail-actions">
+                        <button class="btn btn-info" onclick="printStudentDetails()">🖨️ Print Details</button>
+                        <button class="btn btn-warning" onclick="contactParent()">📞 Contact Parent</button>
+                    </div>
+                </div>
+
+                <!-- No Result Message -->
+                <div id="noStudentFound" class="no-result" style="display: none;">
+                    <p>❌ No student found with this enrollment number. Please check and try again.</p>
+                </div>
+
+                <!-- Filter Controls -->
+                <div class="filter-controls" style="margin-top: 2rem;">
+                    <h3>📋 All Students</h3>
+                    <select id="studentDivisionFilter">
+                        <option value="">All Divisions</option>
+                        <option value="3A">Division 3A</option>
+                        <option value="3B">Division 3B</option>
+                    </select>
+                    <button class="btn btn-secondary" onclick="loadStudentPerformance()">📊 Refresh</button>
+                </div>
+                <div id="studentPerformanceList" class="student-performance-grid"></div>
+            </section>
+
+            <!-- 8️⃣ TIMETABLE SECTION -->
+            <section id="timetable" class="content-section">
+                <h2>📅 Timetable</h2>
+                <div class="timetable-container">
+                    <h3>My Weekly Schedule</h3>
+                    <table class="timetable">
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>Monday</th>
+                                <th>Tuesday</th>
+                                <th>Wednesday</th>
+                                <th>Thursday</th>
+                                <th>Friday</th>
+                            </tr>
+                        </thead>
+                        <tbody id="timetableBody">
+                        </tbody>
+                    </table>
+                </div>
+                <div style="margin-top: 1.5rem;">
+                    <h3>Today's Classes</h3>
+                    <div id="todaysClasses" class="todays-classes"></div>
+                </div>
+            </section>
+
+            <!-- 9️⃣ NOTES MANAGEMENT SECTION -->
+            <section id="notes" class="content-section">
+                <h2>📄 Notes Management</h2>
+                <div class="notes-form">
+                    <h3>Upload Notes</h3>
+                    <div class="form-group">
+                        <label for="noteSubject">Select Subject:</label>
+                        <select id="noteSubject">
+                            <option value="">-- Choose Subject --</option>
+                            <option value="Data Structures">Data Structures</option>
+                            <option value="Database Management">Database Management</option>
+                            <option value="Web Development">Web Development</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="noteTitle">Note Title:</label>
+                        <input type="text" id="noteTitle" placeholder="Enter note title (e.g., Chapter 5 - Arrays)">
+                    </div>
+                    <div class="form-group">
+                        <label for="noteFile">Select PDF File:</label>
+                        <input type="file" id="noteFile" accept=".pdf" placeholder="Choose PDF file">
+                        <small>💡 UI Only - File upload disabled for frontend demo</small>
+                    </div>
+                    <button class="btn btn-primary" onclick="uploadNotes()">📤 Upload Notes</button>
+                    <div id="noteSuccess" class="success-message" style="display: none;">
+                        ✅ Notes uploaded successfully!
+                    </div>
+                </div>
+
+                <h3 style="margin-top: 2rem;">Uploaded Notes</h3>
+                <div id="notesList" class="notes-list"></div>
+            </section>
+
+            <!-- 🔟 ASSIGNMENTS SECTION -->
+            <section id="assignments" class="content-section">
+                <h2>📝 Assignments Management</h2>
+                
+                <!-- Create Assignment Form -->
+                <div class="assignment-form">
+                    <h3>➕ Create New Assignment</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="assignSubject">Subject:</label>
+                            <select id="assignSubject" required>
+                                <option value="">-- Select Subject --</option>
+                                <option value="Data Structures">Data Structures</option>
+                                <option value="Database Management">Database Management</option>
+                                <option value="Web Development">Web Development</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="assignDivision">Division:</label>
+                            <select id="assignDivision" required>
+                                <option value="">-- Select Division --</option>
+                                <option value="3A">3A</option>
+                                <option value="3B">3B</option>
+                                <option value="All">All Divisions</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="assignTitle">Assignment Title:</label>
+                        <input type="text" id="assignTitle" placeholder="Enter assignment title" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="assignDescription">Description:</label>
+                        <textarea id="assignDescription" rows="4" placeholder="Describe the assignment details, requirements, and guidelines..." required></textarea>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="assignDueDate">Due Date:</label>
+                            <input type="date" id="assignDueDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="assignMarks">Total Marks:</label>
+                            <input type="number" id="assignMarks" placeholder="e.g., 100" min="1" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="assignFile">Attachment (Optional):</label>
+                        <input type="file" id="assignFile" accept=".pdf,.doc,.docx">
+                        <small>💡 PDF or Word document only</small>
+                    </div>
+                    <button class="btn btn-primary" onclick="createAssignment()">📤 Create Assignment</button>
+                    <div id="assignSuccess" class="success-message" style="display: none;">
+                        ✅ Assignment created successfully!
+                    </div>
+                </div>
+
+                <!-- Existing Assignments -->
+                <div class="existing-assignments" style="margin-top: 2rem;">
+                    <h3>📋 Existing Assignments</h3>
+                    <div class="filter-controls">
+                        <select id="filterAssignSubject">
+                            <option value="">All Subjects</option>
+                            <option value="Data Structures">Data Structures</option>
+                            <option value="Database Management">Database Management</option>
+                            <option value="Web Development">Web Development</option>
+                        </select>
+                        <select id="filterAssignStatus">
+                            <option value="">All Status</option>
+                            <option value="Active">Active</option>
+                            <option value="Closed">Closed</option>
+                        </select>
+                        <button class="btn btn-secondary" onclick="filterAssignments()">🔍 Filter</button>
+                    </div>
+                    <div id="assignmentsList" class="assignments-grid"></div>
+                </div>
+            </section>
+
+            <!-- 1️⃣1️⃣ ONLINE CLASSES SECTION -->
+            <section id="classes" class="content-section">
+                <h2>🎥 Online Classes</h2>
+                
+                <!-- Schedule New Class -->
+                <div class="class-form">
+                    <h3>➕ Schedule New Online Class</h3>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="classSubject">Subject:</label>
+                            <select id="classSubject" required>
+                                <option value="">-- Select Subject --</option>
+                                <option value="Data Structures">Data Structures</option>
+                                <option value="Database Management">Database Management</option>
+                                <option value="Web Development">Web Development</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="classDivision">Division:</label>
+                            <select id="classDivision" required>
+                                <option value="">-- Select Division --</option>
+                                <option value="3A">3A</option>
+                                <option value="3B">3B</option>
+                                <option value="All">All Divisions</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="classTopic">Class Topic:</label>
+                        <input type="text" id="classTopic" placeholder="Enter class topic (e.g., Introduction to Trees)" required>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="classDate">Date:</label>
+                            <input type="date" id="classDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="classTime">Time:</label>
+                            <input type="time" id="classTime" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="classDuration">Duration (mins):</label>
+                            <input type="number" id="classDuration" placeholder="60" min="15" max="180" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="classPlatform">Platform:</label>
+                        <select id="classPlatform" required>
+                            <option value="">-- Select Platform --</option>
+                            <option value="Google Meet">Google Meet</option>
+                            <option value="Zoom">Zoom</option>
+                            <option value="Microsoft Teams">Microsoft Teams</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="classMeetLink">Meeting Link:</label>
+                        <input type="url" id="classMeetLink" placeholder="https://meet.google.com/xxx-xxxx-xxx" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="classDescription">Description (Optional):</label>
+                        <textarea id="classDescription" rows="3" placeholder="Additional details about the class..."></textarea>
+                    </div>
+                    <button class="btn btn-primary" onclick="scheduleClass()">📅 Schedule Class</button>
+                    <div id="classSuccess" class="success-message" style="display: none;">
+                        ✅ Online class scheduled successfully!
+                    </div>
+                </div>
+
+                <!-- Upcoming Classes -->
+                <div class="upcoming-classes" style="margin-top: 2rem;">
+                    <h3>📅 Upcoming Classes</h3>
+                    <div id="upcomingClassesList" class="classes-grid"></div>
+                </div>
+
+                <!-- Past Classes -->
+                <div class="past-classes" style="margin-top: 2rem;">
+                    <h3>📚 Past Classes</h3>
+                    <div id="pastClassesList" class="classes-grid"></div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../js/theme.js"></script>
+    <script src="../../js/teacher.js"></script>
+</body>
+</html>

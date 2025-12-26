@@ -1,21 +1,44 @@
+/* ===== CSS VARIABLES ===== */
+:root {
+  --bg-primary: #ffffff;
+  --text-primary: #1a1a1a;
+  --text-secondary: #666666;
+  --border-color: #ccc;
+  --input-bg: #ffffff;
+  --button-bg: #007bff;
+  --left-bg: #eef4ff;
+}
+
+body.dark-mode {
+  --bg-primary: #1a1a1a;
+  --text-primary: #ffffff;
+  --text-secondary: #b0b0b0;
+  --border-color: #444444;
+  --input-bg: #2d2d2d;
+  --button-bg: #0056b3;
+  --left-bg: #393E46;
+}
+
 body {
     margin: 0;
     padding: 0;
-    background: #c9d7ff;
+    background: var(--left-bg);
     font-family: Arial;
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .container {
     width: 900px;
     min-height: 520px;
-    background: #fff;
+    background: var(--bg-primary);
     border-radius: 18px;
     display: flex;
     box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    transition: background-color 0.3s ease;
 }
 
 /* LEFT SIDE */
@@ -117,27 +140,6 @@ button:hover {
     color: #666;
 }
 
-/* ===== DARK MODE VARIABLES ===== */
-:root {
-  --bg-primary: #ffffff;
-  --text-primary: #1a1a1a;
-  --text-secondary: #666666;
-  --border-color: #ccc;
-  --input-bg: #ffffff;
-  --button-bg: #007bff;
-  --left-bg: #eef4ff;
-}
-
-body.dark-mode {
-  --bg-primary: #1a1a1a;
-  --text-primary: #ffffff;
-  --text-secondary: #b0b0b0;
-  --border-color: #444444;
-  --input-bg: #2d2d2d;
-  --button-bg: #0056b3;
-  --left-bg: #393E46;
-}
-
 body {
   transition: background-color 0.3s ease, color 0.3s ease;
   background-color: var(--bg-primary);
@@ -223,6 +225,49 @@ body.dark-mode .theme-toggle {
 
 .theme-toggle:active {
   transform: scale(0.95);
+}
+
+/* ===== COMPREHENSIVE DARK MODE STYLES ===== */
+
+body.dark-mode {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+body.dark-mode .container {
+  background-color: var(--bg-primary);
+}
+
+body.dark-mode .right {
+  background-color: var(--bg-primary);
+}
+
+body.dark-mode .form label {
+  color: var(--text-primary);
+}
+
+body.dark-mode .form input,
+body.dark-mode .form select {
+  background-color: var(--input-bg);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+}
+
+body.dark-mode .form input::placeholder {
+  color: var(--text-secondary);
+}
+
+body.dark-mode #loginBtn {
+  background-color: var(--button-bg);
+}
+
+body.dark-mode .bottomTxt {
+  color: var(--text-secondary);
+}
+
+body.dark-mode #loginTitle {
+  color: #66b3ff;
 }
 
 /* ===== MIXED HOVER EFFECTS ===== */

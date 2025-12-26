@@ -1,0 +1,1037 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>HOD Dashboard - Smart Campus</title>
+    <link rel="stylesheet" href="../../css/theme.css">
+    <link rel="stylesheet" href="../../css/hod/hod.css">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-left">
+            <button class="nav-btn" id="sidebarToggle" onclick="toggleSidebar()">☰</button>
+            <div class="nav-brand">
+                <img src="../../assets/images/logo.png" alt="Logo" class="nav-logo">
+                <span class="nav-title">Smart Campus</span>
+            </div>
+        </div>
+        <div class="nav-right">
+            <button class="nav-btn notification-btn" id="notificationBtn" onclick="toggleNotifications()">
+                🔔
+                <span class="notification-badge" id="notifBadge">5</span>
+            </button>
+            <button class="nav-btn" id="themeToggle">🌙</button>
+            <button class="nav-btn" id="logoutBtn" onclick="logoutHOD()">🚪</button>
+        </div>
+    </nav>
+
+    <!-- Notification Dropdown -->
+    <div class="notification-dropdown" id="notificationDropdown">
+        <div class="notif-header">
+            <h4>🔔 Notifications</h4>
+            <button class="btn-link" onclick="markAllRead()">Mark all read</button>
+        </div>
+        <div class="notif-list" id="notifDropdownList">
+            <!-- Loaded via JS -->
+        </div>
+        <div class="notif-footer">
+            <a href="#" onclick="showSection('notifications'); toggleNotifications();">View All Notifications</a>
+        </div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-profile">
+                <div class="profile-avatar-small">👨‍💼</div>
+                <div class="profile-info-small">
+                    <span class="profile-name" id="sidebarHODName">Dr. Ramesh Gupta</span>
+                    <span class="role-badge">HOD</span>
+                </div>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="#profile" class="menu-item" data-section="profile">👤 My Profile</a></li>
+                <li><a href="#dashboard" class="menu-item active" data-section="dashboard">📊 Dashboard</a></li>
+                <li><a href="#teachers" class="menu-item" data-section="teachers">👨‍🏫 Teachers Management</a></li>
+                <li><a href="#students" class="menu-item" data-section="students">👥 Students Management</a></li>
+                <li><a href="#teacher-attendance" class="menu-item" data-section="teacher-attendance">🎯 Teacher Attendance</a></li>
+                <li><a href="#attendance" class="menu-item" data-section="attendance">📈 Attendance Overview</a></li>
+                <li><a href="#proxy" class="menu-item" data-section="proxy">📋 Proxy Approval</a></li>
+                <li><a href="#issues" class="menu-item" data-section="issues">⚠️ Student Issues</a></li>
+                <li><a href="#timetable" class="menu-item" data-section="timetable">📅 Timetable</a></li>
+                <li><a href="#reports" class="menu-item" data-section="reports">📊 Reports & Analytics</a></li>
+                <li><a href="#notices" class="menu-item" data-section="notices">📢 Notices</a></li>
+                <li><a href="#feedback" class="menu-item" data-section="feedback">📝 Feedback Review</a></li>
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+
+            <!-- ========================================
+                 1️⃣ PROFILE SECTION
+                 ======================================== -->
+            <section id="profile" class="content-section">
+                <h2>👤 HOD Profile</h2>
+                <div class="profile-card">
+                    <div class="profile-header">
+                        <div class="profile-avatar">👨‍💼</div>
+                        <div class="profile-info">
+                            <h3 id="profileName">Dr. Ramesh Gupta</h3>
+                            <p id="profileRole">Head of Department - Computer Science</p>
+                            <span class="role-badge large">HOD</span>
+                        </div>
+                    </div>
+                    <div class="profile-details">
+                        <div class="profile-section">
+                            <h4>Personal Information</h4>
+                            <div class="profile-row">
+                                <span class="label">Employee ID:</span>
+                                <span class="value" id="profileEmployeeId">HOD001</span>
+                            </div>
+                            <div class="profile-row">
+                                <span class="label">Email:</span>
+                                <span class="value" id="profileEmail">ramesh.gupta@college.ac.in</span>
+                            </div>
+                            <div class="profile-row">
+                                <span class="label">Phone:</span>
+                                <span class="value" id="profilePhone">+91 9876543210</span>
+                            </div>
+                        </div>
+                        <div class="profile-section">
+                            <h4>Department Information</h4>
+                            <div class="profile-row">
+                                <span class="label">Department:</span>
+                                <span class="value" id="profileDept">Computer Science & Engineering</span>
+                            </div>
+                            <div class="profile-row">
+                                <span class="label">Total Teachers:</span>
+                                <span class="value" id="profileTotalTeachers">12</span>
+                            </div>
+                            <div class="profile-row">
+                                <span class="label">Total Students:</span>
+                                <span class="value" id="profileTotalStudents">450</span>
+                            </div>
+                            <div class="profile-row">
+                                <span class="label">Designation:</span>
+                                <span class="value">Professor & Head</span>
+                            </div>
+                            <div class="profile-row">
+                                <span class="label">Experience:</span>
+                                <span class="value">18 Years</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="profile-actions">
+                        <button class="btn btn-secondary" onclick="editProfile()">✏️ Edit Profile</button>
+                        <button class="btn btn-danger" onclick="logoutHOD()">🚪 Logout</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========================================
+                 2️⃣ DASHBOARD OVERVIEW SECTION
+                 ======================================== -->
+            <section id="dashboard" class="content-section active">
+                <div class="dashboard-header">
+                    <h2>📊 Dashboard Overview</h2>
+                    <div class="dept-badge">
+                        <span>🏛️ Department: </span>
+                        <strong id="dashDeptName">Computer Science & Engineering</strong>
+                    </div>
+                </div>
+                
+                <!-- Stats Grid -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon teachers">👨‍🏫</div>
+                        <div class="stat-info">
+                            <h3>Total Teachers</h3>
+                            <p class="stat-value" id="dashTotalTeachers">12</p>
+                            <p class="stat-desc">In department</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon students">👥</div>
+                        <div class="stat-info">
+                            <h3>Total Students</h3>
+                            <p class="stat-value" id="dashTotalStudents">450</p>
+                            <p class="stat-desc">Across all semesters</p>
+                        </div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-icon classes">📚</div>
+                        <div class="stat-info">
+                            <h3>Classes Today</h3>
+                            <p class="stat-value" id="dashClassesToday">24</p>
+                            <p class="stat-desc">Scheduled sessions</p>
+                        </div>
+                    </div>
+                    <div class="stat-card warning">
+                        <div class="stat-icon proxy">📋</div>
+                        <div class="stat-info">
+                            <h3>Pending Proxies</h3>
+                            <p class="stat-value" id="dashPendingProxies">5</p>
+                            <p class="stat-desc">Awaiting approval</p>
+                        </div>
+                    </div>
+                    <div class="stat-card warning">
+                        <div class="stat-icon issues">⚠️</div>
+                        <div class="stat-info">
+                            <h3>Pending Issues</h3>
+                            <p class="stat-value" id="dashPendingIssues">8</p>
+                            <p class="stat-desc">Student complaints</p>
+                        </div>
+                    </div>
+                    <div class="stat-card success">
+                        <div class="stat-icon attendance">📈</div>
+                        <div class="stat-info">
+                            <h3>Attendance Rate</h3>
+                            <p class="stat-value" id="dashAttendanceRate">87%</p>
+                            <p class="stat-desc">Department average</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Actions -->
+                <div class="quick-actions">
+                    <h3>⚡ Quick Actions</h3>
+                    <div class="actions-grid">
+                        <button class="action-btn" onclick="showSection('proxy')">
+                            <span class="action-icon">📋</span>
+                            <span>Review Proxies</span>
+                        </button>
+                        <button class="action-btn" onclick="showSection('issues')">
+                            <span class="action-icon">⚠️</span>
+                            <span>Handle Issues</span>
+                        </button>
+                        <button class="action-btn" onclick="showSection('notices')">
+                            <span class="action-icon">📢</span>
+                            <span>Post Notice</span>
+                        </button>
+                        <button class="action-btn" onclick="showSection('reports')">
+                            <span class="action-icon">📊</span>
+                            <span>View Reports</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Recent Activity & Alerts -->
+                <div class="dashboard-grid">
+                    <div class="dashboard-card">
+                        <h3>🔔 Recent Activity</h3>
+                        <div class="activity-list" id="recentActivityList">
+                            <!-- Loaded via JS -->
+                        </div>
+                    </div>
+                    <div class="dashboard-card">
+                        <h3>⚠️ Low Attendance Alerts</h3>
+                        <div class="alert-list" id="lowAttendanceAlerts">
+                            <!-- Loaded via JS -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========================================
+                 3️⃣ TEACHERS MANAGEMENT SECTION
+                 ======================================== -->
+            <section id="teachers" class="content-section">
+                <h2>👨‍🏫 Teachers Management</h2>
+                
+                <!-- Teacher Stats -->
+                <div class="mini-stats">
+                    <div class="mini-stat">
+                        <span class="mini-value" id="teacherStatsTotal">12</span>
+                        <span class="mini-label">Total Teachers</span>
+                    </div>
+                    <div class="mini-stat">
+                        <span class="mini-value" id="teacherStatsActive">11</span>
+                        <span class="mini-label">Active</span>
+                    </div>
+                    <div class="mini-stat">
+                        <span class="mini-value" id="teacherStatsInactive">1</span>
+                        <span class="mini-label">Inactive</span>
+                    </div>
+                </div>
+
+                <!-- Filter & Search -->
+                <div class="filter-controls">
+                    <input type="text" id="teacherSearch" placeholder="🔍 Search by name or ID..." onkeyup="searchTeachers()">
+                    <select id="teacherStatusFilter" onchange="filterTeachers()">
+                        <option value="">All Status</option>
+                        <option value="active">Active</option>
+                        <option value="inactive">Inactive</option>
+                    </select>
+                    <button class="btn btn-primary" onclick="openAddTeacherModal()">➕ Add Teacher</button>
+                </div>
+
+                <!-- Teachers List -->
+                <div class="teachers-grid" id="teachersList">
+                    <!-- Loaded via JS -->
+                </div>
+            </section>
+
+            <!-- ========================================
+                 4️⃣ STUDENTS MANAGEMENT SECTION
+                 ======================================== -->
+            <section id="students" class="content-section">
+                <h2>👥 Students Management</h2>
+                
+                <!-- Student Stats -->
+                <div class="mini-stats">
+                    <div class="mini-stat">
+                        <span class="mini-value" id="studentStatsTotal">450</span>
+                        <span class="mini-label">Total Students</span>
+                    </div>
+                    <div class="mini-stat danger">
+                        <span class="mini-value" id="studentStatsLowAtt">23</span>
+                        <span class="mini-label">Low Attendance (&lt;75%)</span>
+                    </div>
+                    <div class="mini-stat">
+                        <span class="mini-value" id="studentStatsIssues">8</span>
+                        <span class="mini-label">Active Issues</span>
+                    </div>
+                </div>
+
+                <!-- Filters -->
+                <div class="filter-controls">
+                    <select id="studentSemesterFilter" onchange="filterStudents()">
+                        <option value="">All Semesters</option>
+                        <option value="1">Semester 1</option>
+                        <option value="2">Semester 2</option>
+                        <option value="3">Semester 3</option>
+                        <option value="4">Semester 4</option>
+                        <option value="5">Semester 5</option>
+                        <option value="6">Semester 6</option>
+                        <option value="7">Semester 7</option>
+                        <option value="8">Semester 8</option>
+                    </select>
+                    <select id="studentDivisionFilter" onchange="filterStudents()">
+                        <option value="">All Divisions</option>
+                        <option value="A">Division A</option>
+                        <option value="B">Division B</option>
+                        <option value="C">Division C</option>
+                    </select>
+                    <select id="studentAttendanceFilter" onchange="filterStudents()">
+                        <option value="">All Attendance</option>
+                        <option value="low">Below 75%</option>
+                        <option value="normal">75% - 90%</option>
+                        <option value="high">Above 90%</option>
+                    </select>
+                    <input type="text" id="studentSearch" placeholder="🔍 Search student..." onkeyup="searchStudents()">
+                    <button class="btn btn-secondary" onclick="downloadStudentCSV()">📥 Download CSV</button>
+                </div>
+
+                <!-- Students Table -->
+                <div class="table-responsive">
+                    <table class="data-table" id="studentsTable">
+                        <thead>
+                            <tr>
+                                <th>Enrollment</th>
+                                <th>Name</th>
+                                <th>Semester</th>
+                                <th>Division</th>
+                                <th>Attendance</th>
+                                <th>GPA</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="studentsTableBody">
+                            <!-- Loaded via JS -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination" id="studentsPagination">
+                    <button class="btn btn-secondary" onclick="prevStudentPage()">← Previous</button>
+                    <span id="studentPageInfo">Page 1 of 10</span>
+                    <button class="btn btn-secondary" onclick="nextStudentPage()">Next →</button>
+                </div>
+            </section>
+
+            <!-- ========================================
+                 5️⃣ TEACHER ATTENDANCE SECTION
+                 ======================================== -->
+            <section id="teacher-attendance" class="content-section">
+                <h2>🎯 Teacher Attendance Management</h2>
+
+                <!-- Date Selection & Stats -->
+                <div class="teacher-attendance-header">
+                    <div class="date-selector">
+                        <label>📅 Select Date:</label>
+                        <input type="date" id="teacherAttendanceDate" class="form-control" />
+                        <button class="btn btn-primary" onclick="loadTeacherAttendance()">Load Attendance</button>
+                    </div>
+                    <div class="attendance-stats-mini">
+                        <div class="stat-mini">
+                            <span class="stat-label">Present</span>
+                            <span class="stat-value present" id="teacherPresentCount">0</span>
+                        </div>
+                        <div class="stat-mini">
+                            <span class="stat-label">Absent</span>
+                            <span class="stat-value absent" id="teacherAbsentCount">0</span>
+                        </div>
+                        <div class="stat-mini">
+                            <span class="stat-label">Leave</span>
+                            <span class="stat-value leave" id="teacherLeaveCount">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mark Today's Attendance -->
+                <div class="attendance-mark-section">
+                    <h3>📝 Mark Attendance for Today</h3>
+                    <div class="teacher-attendance-grid" id="teacherAttendanceGrid">
+                        <!-- Loaded via JS -->
+                    </div>
+                    <div class="action-buttons">
+                        <button class="btn btn-success" onclick="saveTeacherAttendance()">💾 Save Attendance</button>
+                        <button class="btn btn-secondary" onclick="resetTeacherAttendance()">🔄 Reset</button>
+                    </div>
+                </div>
+
+                <!-- Attendance History -->
+                <div class="attendance-history-section">
+                    <h3>📊 Attendance History</h3>
+                    <div class="filter-section">
+                        <select id="teacherFilterSelect" class="form-control" onchange="filterTeacherAttendanceHistory()">
+                            <option value="all">All Teachers</option>
+                        </select>
+                        <select id="monthFilterSelect" class="form-control" onchange="filterTeacherAttendanceHistory()">
+                            <option value="current">Current Month</option>
+                            <option value="last">Last Month</option>
+                            <option value="all">All Time</option>
+                        </select>
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Teacher Name</th>
+                                <th>Total Days</th>
+                                <th>Present</th>
+                                <th>Absent</th>
+                                <th>Leave</th>
+                                <th>Percentage</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="teacherAttendanceHistoryBody">
+                            <!-- Loaded via JS -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- ========================================
+                 6️⃣ ATTENDANCE OVERVIEW SECTION
+                 ======================================== -->
+            <section id="attendance" class="content-section">
+                <h2>📈 Attendance Overview</h2>
+
+                <!-- Attendance Summary Cards -->
+                <div class="attendance-summary">
+                    <div class="summary-card">
+                        <h4>Department Average</h4>
+                        <div class="progress-ring">
+                            <span class="progress-value" id="deptAvgAttendance">87%</span>
+                        </div>
+                    </div>
+                    <div class="summary-card">
+                        <h4>This Week</h4>
+                        <div class="progress-ring">
+                            <span class="progress-value" id="weekAttendance">89%</span>
+                        </div>
+                    </div>
+                    <div class="summary-card">
+                        <h4>This Month</h4>
+                        <div class="progress-ring">
+                            <span class="progress-value" id="monthAttendance">86%</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Tabs -->
+                <div class="attendance-tabs">
+                    <button class="tab-btn active" onclick="switchAttendanceTab('semester')">📚 Semester-wise</button>
+                    <button class="tab-btn" onclick="switchAttendanceTab('teacher')">👨‍🏫 Teacher-wise</button>
+                    <button class="tab-btn" onclick="switchAttendanceTab('alerts')">⚠️ Low Attendance</button>
+                </div>
+
+                <!-- Semester-wise Attendance -->
+                <div id="semester-attendance" class="attendance-tab-content active">
+                    <h3>Semester-wise Attendance Report</h3>
+                    <div class="semester-attendance-grid" id="semesterAttendanceGrid">
+                        <!-- Loaded via JS -->
+                    </div>
+                </div>
+
+                <!-- Teacher-wise Attendance -->
+                <div id="teacher-attendance" class="attendance-tab-content">
+                    <h3>Teacher-wise Attendance Report</h3>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Teacher Name</th>
+                                <th>Subject</th>
+                                <th>Classes Taken</th>
+                                <th>Avg Attendance</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="teacherAttendanceBody">
+                            <!-- Loaded via JS -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Low Attendance Alerts -->
+                <div id="alerts-attendance" class="attendance-tab-content">
+                    <h3>⚠️ Students with Low Attendance (&lt;75%)</h3>
+                    <div class="low-attendance-list" id="lowAttendanceList">
+                        <!-- Loaded via JS -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========================================
+                 6️⃣ PROXY APPROVAL SECTION
+                 ======================================== -->
+            <section id="proxy" class="content-section">
+                <h2>📋 Proxy Approval</h2>
+                
+                <!-- Proxy Stats -->
+                <div class="mini-stats">
+                    <div class="mini-stat warning">
+                        <span class="mini-value" id="proxyStatsPending">5</span>
+                        <span class="mini-label">Pending</span>
+                    </div>
+                    <div class="mini-stat success">
+                        <span class="mini-value" id="proxyStatsApproved">42</span>
+                        <span class="mini-label">Approved</span>
+                    </div>
+                    <div class="mini-stat danger">
+                        <span class="mini-value" id="proxyStatsRejected">8</span>
+                        <span class="mini-label">Rejected</span>
+                    </div>
+                </div>
+
+                <!-- Filter -->
+                <div class="filter-controls">
+                    <select id="proxyStatusFilter" onchange="filterProxyRequests()">
+                        <option value="">All Status</option>
+                        <option value="pending">Pending</option>
+                        <option value="approved">Approved</option>
+                        <option value="rejected">Rejected</option>
+                    </select>
+                    <input type="date" id="proxyDateFilter" onchange="filterProxyRequests()">
+                    <button class="btn btn-secondary" onclick="resetProxyFilters()">🔄 Reset</button>
+                </div>
+
+                <!-- Proxy Requests List -->
+                <div class="proxy-list" id="proxyRequestsList">
+                    <!-- Loaded via JS -->
+                </div>
+            </section>
+
+            <!-- ========================================
+                 7️⃣ STUDENT ISSUES SECTION
+                 ======================================== -->
+            <section id="issues" class="content-section">
+                <h2>⚠️ Student Issues Panel</h2>
+                
+                <!-- Issue Stats -->
+                <div class="mini-stats">
+                    <div class="mini-stat warning">
+                        <span class="mini-value" id="issueStatsPending">8</span>
+                        <span class="mini-label">Pending</span>
+                    </div>
+                    <div class="mini-stat info">
+                        <span class="mini-value" id="issueStatsInProgress">3</span>
+                        <span class="mini-label">In Progress</span>
+                    </div>
+                    <div class="mini-stat danger">
+                        <span class="mini-value" id="issueStatsEscalated">2</span>
+                        <span class="mini-label">Escalated</span>
+                    </div>
+                    <div class="mini-stat success">
+                        <span class="mini-value" id="issueStatsResolved">45</span>
+                        <span class="mini-label">Resolved</span>
+                    </div>
+                </div>
+
+                <!-- Filter -->
+                <div class="filter-controls">
+                    <select id="issueStatusFilter" onchange="filterIssues()">
+                        <option value="">All Status</option>
+                        <option value="pending">Pending</option>
+                        <option value="in-progress">In Progress</option>
+                        <option value="escalated">Escalated</option>
+                        <option value="resolved">Resolved</option>
+                    </select>
+                    <select id="issueCategoryFilter" onchange="filterIssues()">
+                        <option value="">All Categories</option>
+                        <option value="academic">Academic</option>
+                        <option value="infrastructure">Infrastructure</option>
+                        <option value="faculty">Faculty Related</option>
+                        <option value="other">Other</option>
+                    </select>
+                    <select id="issuePriorityFilter" onchange="filterIssues()">
+                        <option value="">All Priority</option>
+                        <option value="high">High</option>
+                        <option value="medium">Medium</option>
+                        <option value="low">Low</option>
+                    </select>
+                </div>
+
+                <!-- Issues List -->
+                <div class="issues-list" id="issuesList">
+                    <!-- Loaded via JS -->
+                </div>
+            </section>
+
+            <!-- ========================================
+                 8️⃣ TIMETABLE SECTION
+                 ======================================== -->
+            <section id="timetable" class="content-section">
+                <h2>📅 Department Timetable</h2>
+                
+                <!-- Timetable Filter -->
+                <div class="filter-controls">
+                    <select id="timetableSemesterFilter" onchange="loadTimetable()">
+                        <option value="">All Semesters</option>
+                        <option value="1">Semester 1</option>
+                        <option value="2">Semester 2</option>
+                        <option value="3">Semester 3</option>
+                        <option value="4">Semester 4</option>
+                        <option value="5" selected>Semester 5</option>
+                        <option value="6">Semester 6</option>
+                        <option value="7">Semester 7</option>
+                        <option value="8">Semester 8</option>
+                    </select>
+                    <select id="timetableDivisionFilter" onchange="loadTimetable()">
+                        <option value="">All Divisions</option>
+                        <option value="A" selected>Division A</option>
+                        <option value="B">Division B</option>
+                        <option value="C">Division C</option>
+                    </select>
+                </div>
+
+                <!-- Timetable Display -->
+                <div class="timetable-container">
+                    <table class="timetable">
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>Monday</th>
+                                <th>Tuesday</th>
+                                <th>Wednesday</th>
+                                <th>Thursday</th>
+                                <th>Friday</th>
+                                <th>Saturday</th>
+                            </tr>
+                        </thead>
+                        <tbody id="timetableBody">
+                            <!-- Loaded via JS -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Today's Classes -->
+                <div class="todays-classes-section">
+                    <h3>📅 Today's Classes</h3>
+                    <div class="todays-classes-grid" id="todaysClassesGrid">
+                        <!-- Loaded via JS -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========================================
+                 9️⃣ REPORTS & ANALYTICS SECTION
+                 ======================================== -->
+            <section id="reports" class="content-section">
+                <h2>📊 Reports & Analytics</h2>
+                
+                <!-- Report Tabs -->
+                <div class="report-tabs">
+                    <button class="tab-btn active" onclick="switchReportTab('attendance')">📈 Attendance Report</button>
+                    <button class="tab-btn" onclick="switchReportTab('performance')">👨‍🏫 Teacher Performance</button>
+                    <button class="tab-btn" onclick="switchReportTab('issues')">⚠️ Issue Statistics</button>
+                </div>
+
+                <!-- Attendance Report -->
+                <div id="attendance-report" class="report-tab-content active">
+                    <div class="report-header">
+                        <h3>Monthly Attendance Report</h3>
+                        <div class="report-actions">
+                            <select id="reportMonth">
+                                <option value="12">December 2024</option>
+                                <option value="11">November 2024</option>
+                                <option value="10">October 2024</option>
+                            </select>
+                            <button class="btn btn-secondary" onclick="downloadReport('attendance')">📥 Download PDF</button>
+                        </div>
+                    </div>
+                    <div class="chart-container">
+                        <div class="chart-placeholder" id="attendanceChart">
+                            <div class="bar-chart">
+                                <div class="bar" style="height: 85%;" data-label="Sem 1" data-value="85%"></div>
+                                <div class="bar" style="height: 78%;" data-label="Sem 2" data-value="78%"></div>
+                                <div class="bar" style="height: 92%;" data-label="Sem 3" data-value="92%"></div>
+                                <div class="bar" style="height: 88%;" data-label="Sem 4" data-value="88%"></div>
+                                <div class="bar" style="height: 82%;" data-label="Sem 5" data-value="82%"></div>
+                                <div class="bar" style="height: 90%;" data-label="Sem 6" data-value="90%"></div>
+                                <div class="bar" style="height: 76%;" data-label="Sem 7" data-value="76%"></div>
+                                <div class="bar" style="height: 84%;" data-label="Sem 8" data-value="84%"></div>
+                            </div>
+                            <p class="chart-title">Semester-wise Attendance (December 2024)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Teacher Performance -->
+                <div id="performance-report" class="report-tab-content">
+                    <div class="report-header">
+                        <h3>Teacher Performance Summary</h3>
+                        <button class="btn btn-secondary" onclick="downloadReport('performance')">📥 Download PDF</button>
+                    </div>
+                    <table class="data-table">
+                        <thead>
+                            <tr>
+                                <th>Teacher</th>
+                                <th>Classes/Week</th>
+                                <th>Avg Attendance</th>
+                                <th>Feedback Score</th>
+                                <th>Performance</th>
+                            </tr>
+                        </thead>
+                        <tbody id="performanceTableBody">
+                            <!-- Loaded via JS -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Issue Statistics -->
+                <div id="issues-report" class="report-tab-content">
+                    <div class="report-header">
+                        <h3>Issue Statistics</h3>
+                        <button class="btn btn-secondary" onclick="downloadReport('issues')">📥 Download PDF</button>
+                    </div>
+                    <div class="chart-container">
+                        <div class="pie-chart-container">
+                            <div class="pie-chart" id="issuesPieChart">
+                                <div class="pie-segment academic" style="--percent: 35;"></div>
+                                <div class="pie-segment infrastructure" style="--percent: 25;"></div>
+                                <div class="pie-segment faculty" style="--percent: 20;"></div>
+                                <div class="pie-segment other" style="--percent: 20;"></div>
+                            </div>
+                            <div class="pie-legend">
+                                <div class="legend-item"><span class="legend-color academic"></span> Academic (35%)</div>
+                                <div class="legend-item"><span class="legend-color infrastructure"></span> Infrastructure (25%)</div>
+                                <div class="legend-item"><span class="legend-color faculty"></span> Faculty (20%)</div>
+                                <div class="legend-item"><span class="legend-color other"></span> Other (20%)</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="issue-stats-summary">
+                        <div class="issue-stat-card">
+                            <h4>Total Issues (This Month)</h4>
+                            <p class="stat-number">58</p>
+                        </div>
+                        <div class="issue-stat-card">
+                            <h4>Avg Resolution Time</h4>
+                            <p class="stat-number">2.5 days</p>
+                        </div>
+                        <div class="issue-stat-card">
+                            <h4>Resolution Rate</h4>
+                            <p class="stat-number">92%</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========================================
+                 🔟 NOTICES & ANNOUNCEMENTS SECTION
+                 ======================================== -->
+            <section id="notices" class="content-section">
+                <h2>📢 Notices & Announcements</h2>
+                
+                <!-- Tabs -->
+                <div class="notice-tabs">
+                    <button class="tab-btn active" onclick="switchNoticeTab('create')">➕ Create Notice</button>
+                    <button class="tab-btn" onclick="switchNoticeTab('history')">📜 Previous Notices</button>
+                </div>
+
+                <!-- Create Notice -->
+                <div id="create-notice" class="notice-tab-content active">
+                    <form id="noticeForm" class="notice-form">
+                        <div class="form-group">
+                            <label for="noticeTitle">Notice Title *</label>
+                            <input type="text" id="noticeTitle" placeholder="Enter notice title" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="noticeDescription">Description *</label>
+                            <textarea id="noticeDescription" rows="5" placeholder="Enter notice description..." required></textarea>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="noticeTarget">Publish To *</label>
+                                <select id="noticeTarget" required>
+                                    <option value="">-- Select Target --</option>
+                                    <option value="all">All (Students & Teachers)</option>
+                                    <option value="students">All Students</option>
+                                    <option value="teachers">All Teachers</option>
+                                    <option value="semester">Specific Semester</option>
+                                    <option value="division">Specific Division</option>
+                                </select>
+                            </div>
+                            <div class="form-group" id="specificTargetGroup" style="display: none;">
+                                <label for="specificTarget">Select Specific</label>
+                                <select id="specificTarget">
+                                    <!-- Options loaded based on target type -->
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="noticePriority">Priority</label>
+                                <select id="noticePriority">
+                                    <option value="normal">Normal</option>
+                                    <option value="important">Important</option>
+                                    <option value="urgent">Urgent</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="noticeExpiry">Expiry Date (Optional)</label>
+                                <input type="date" id="noticeExpiry">
+                            </div>
+                        </div>
+                        <div class="form-actions">
+                            <button type="submit" class="btn btn-primary">📤 Publish Notice</button>
+                            <button type="button" class="btn btn-secondary" onclick="previewNotice()">👁️ Preview</button>
+                            <button type="reset" class="btn btn-outline">🔄 Clear</button>
+                        </div>
+                    </form>
+                    <div id="noticeSuccess" class="success-message" style="display: none;">
+                        ✅ Notice published successfully!
+                    </div>
+                </div>
+
+                <!-- Notice History -->
+                <div id="history-notice" class="notice-tab-content">
+                    <div class="filter-controls">
+                        <input type="text" id="noticeSearch" placeholder="🔍 Search notices..." onkeyup="searchNotices()">
+                        <select id="noticeTargetFilter" onchange="filterNotices()">
+                            <option value="">All Targets</option>
+                            <option value="all">Everyone</option>
+                            <option value="students">Students Only</option>
+                            <option value="teachers">Teachers Only</option>
+                        </select>
+                    </div>
+                    <div class="notices-list" id="noticesHistoryList">
+                        <!-- Loaded via JS -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- ========================================
+                 1️⃣1️⃣ FEEDBACK REVIEW SECTION
+                 ======================================== -->
+            <section id="feedback" class="content-section">
+                <h2>📝 Feedback Review</h2>
+                
+                <!-- Feedback Summary -->
+                <div class="feedback-summary">
+                    <div class="feedback-stat">
+                        <h4>Overall Rating</h4>
+                        <div class="rating-display">
+                            <span class="rating-value">4.2</span>
+                            <span class="rating-stars">⭐⭐⭐⭐</span>
+                            <span class="rating-total">/ 5.0</span>
+                        </div>
+                    </div>
+                    <div class="feedback-stat">
+                        <h4>Total Feedbacks</h4>
+                        <span class="feedback-count">156</span>
+                    </div>
+                    <div class="feedback-stat">
+                        <h4>This Month</h4>
+                        <span class="feedback-count">28</span>
+                    </div>
+                </div>
+
+                <!-- Filter -->
+                <div class="filter-controls">
+                    <select id="feedbackTeacherFilter" onchange="filterFeedback()">
+                        <option value="">All Teachers</option>
+                        <!-- Loaded via JS -->
+                    </select>
+                    <select id="feedbackRatingFilter" onchange="filterFeedback()">
+                        <option value="">All Ratings</option>
+                        <option value="5">5 Stars</option>
+                        <option value="4">4 Stars</option>
+                        <option value="3">3 Stars</option>
+                        <option value="2">2 Stars</option>
+                        <option value="1">1 Star</option>
+                    </select>
+                    <select id="feedbackSubjectFilter" onchange="filterFeedback()">
+                        <option value="">All Subjects</option>
+                        <!-- Loaded via JS -->
+                    </select>
+                </div>
+
+                <!-- Feedback List -->
+                <div class="feedback-list" id="feedbackList">
+                    <!-- Loaded via JS -->
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- ========================================
+         MODALS
+         ======================================== -->
+    
+    <!-- Teacher Details Modal -->
+    <div class="modal" id="teacherModal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h3 id="teacherModalTitle">Teacher Details</h3>
+                <button class="close-btn" onclick="closeModal('teacherModal')">&times;</button>
+            </div>
+            <div class="modal-body" id="teacherModalBody">
+                <!-- Loaded via JS -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('teacherModal')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Assign Subject Modal -->
+    <div class="modal" id="assignSubjectModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Assign Subject to Teacher</h3>
+                <button class="close-btn" onclick="closeModal('assignSubjectModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="assignTeacherId">
+                <div class="form-group">
+                    <label>Teacher: <strong id="assignTeacherName"></strong></label>
+                </div>
+                <div class="form-group">
+                    <label for="assignSubject">Subject *</label>
+                    <select id="assignSubject" required>
+                        <option value="">-- Select Subject --</option>
+                        <option value="ds">Data Structures</option>
+                        <option value="dbms">Database Management</option>
+                        <option value="os">Operating Systems</option>
+                        <option value="cn">Computer Networks</option>
+                        <option value="ai">Artificial Intelligence</option>
+                        <option value="ml">Machine Learning</option>
+                        <option value="wd">Web Development</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="assignSemester">Semester *</label>
+                    <select id="assignSemester" required>
+                        <option value="">-- Select Semester --</option>
+                        <option value="3">Semester 3</option>
+                        <option value="4">Semester 4</option>
+                        <option value="5">Semester 5</option>
+                        <option value="6">Semester 6</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="assignDivision">Division *</label>
+                    <select id="assignDivision" required>
+                        <option value="">-- Select Division --</option>
+                        <option value="A">Division A</option>
+                        <option value="B">Division B</option>
+                        <option value="C">Division C</option>
+                        <option value="all">All Divisions</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="confirmAssignSubject()">✅ Assign</button>
+                <button class="btn btn-secondary" onclick="closeModal('assignSubjectModal')">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Proxy Action Modal -->
+    <div class="modal" id="proxyActionModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="proxyActionTitle">Proxy Request</h3>
+                <button class="close-btn" onclick="closeModal('proxyActionModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <input type="hidden" id="proxyRequestId">
+                <div id="proxyDetails">
+                    <!-- Loaded via JS -->
+                </div>
+                <div class="form-group" id="rejectionReasonGroup" style="display: none;">
+                    <label for="rejectionReason">Reason for Rejection *</label>
+                    <textarea id="rejectionReason" rows="3" placeholder="Enter reason..."></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-success" onclick="approveProxy()">✅ Approve</button>
+                <button class="btn btn-danger" onclick="showRejectForm()">❌ Reject</button>
+                <button class="btn btn-secondary" onclick="closeModal('proxyActionModal')">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Issue Action Modal -->
+    <div class="modal" id="issueActionModal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h3 id="issueActionTitle">Issue Details</h3>
+                <button class="close-btn" onclick="closeModal('issueActionModal')">&times;</button>
+            </div>
+            <div class="modal-body" id="issueDetails">
+                <!-- Loaded via JS -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-primary" onclick="assignIssueToTeacher()">👨‍🏫 Assign to Teacher</button>
+                <button class="btn btn-success" onclick="resolveIssue()">✅ Mark Resolved</button>
+                <button class="btn btn-warning" onclick="escalateIssue()">⬆️ Escalate</button>
+                <button class="btn btn-secondary" onclick="closeModal('issueActionModal')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Student Details Modal -->
+    <div class="modal" id="studentModal">
+        <div class="modal-content large">
+            <div class="modal-header">
+                <h3 id="studentModalTitle">Student Details</h3>
+                <button class="close-btn" onclick="closeModal('studentModal')">&times;</button>
+            </div>
+            <div class="modal-body" id="studentModalBody">
+                <!-- Loaded via JS -->
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-info" onclick="viewStudentIssues()">⚠️ View Issues</button>
+                <button class="btn btn-secondary" onclick="closeModal('studentModal')">Close</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../js/theme.js"></script>
+    <script src="../../js/hod.js"></script>
+</body>
+</html>
